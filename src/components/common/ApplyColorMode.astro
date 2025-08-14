@@ -6,8 +6,9 @@ import { UI } from 'astrowind:config';
   function setBrandColors() {
     const root = document.documentElement;
     // Light/Dark mode variables
-    root.style.setProperty('--aw-color-primary', 'rgb(250 204 21)');   // Yellow
-    root.style.setProperty('--aw-color-secondary', 'rgb(16 185 129)'); // Green
+    
+    root.style.setProperty('--aw-color-primary', 'rgb(16 185 129)'); // Green  // Yellow
+    root.style.setProperty('--aw-color-secondary', 'rgb(250 204 21)');
     root.style.setProperty('--aw-color-accent', 'rgb(37 99 235)');     // Blue
 
     // Text & background defaults
