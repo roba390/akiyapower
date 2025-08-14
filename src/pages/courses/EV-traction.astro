@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import evImage from '~/assets/images/ev-technician-hero.jpg'; // Update as needed
+import benefitImage from '~/assets/images/ev-core-2.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'EV Traction Motor' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="EV Traction Motor"
+    tagline="Torque • Efficiency • Control"
+    image={{ src: evImage, alt: 'EV motor training session' }}
+  >
+    <Fragment slot="subtitle">
+      This course focuses on the electric traction motors used in EVs, covering motor types, control strategies, and performance optimization for real-world applications.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Motor Types & Architecture',
+        description: 'Explore AC induction, permanent magnet, and synchronous motors used in EVs.',
+      },
+      {
+        title: 'Torque & Speed Control',
+        description: 'Understand how motor controllers regulate acceleration, deceleration, and regenerative braking.',
+      },
+      {
+        title: 'Thermal Management',
+        description: 'Learn how motors are cooled and protected from overheating during operation.',
+      },
+      {
+        title: 'Diagnostics & Testing',
+        description: 'Use tools to measure motor performance, detect faults, and validate control signals.',
+      },
+    ]}
+    image={{ src: evImage, alt: 'EV motor components and testing tools' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is ideal for technicians, engineers, and students interested in the mechanical and electrical dynamics of EV propulsion systems.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Hands-On Motor Labs',
+        description: 'Work with real traction motors and controllers in a lab environment.',
+      },
+      {
+        title: 'Performance Analysis',
+        description: 'Learn to interpret torque curves, efficiency maps, and thermal profiles.',
+      },
+      {
+        title: 'Industry Applications',
+        description: 'Understand how motor systems are integrated into commercial EV platforms.',
+      },
+      {
+        title: 'Career Advancement',
+        description: 'Gain skills relevant to EV service, design, and manufacturing roles.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV motor lab and diagnostic setup' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Traction motors are the heart of EV propulsion. This course gives you the tools to understand, service, and optimize them for peak performance.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-red-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Want to specialize in EV propulsion? Reach out to begin your training.</p>
+  </div>
+</PageLayout>

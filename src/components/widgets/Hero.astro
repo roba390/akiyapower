@@ -1,0 +1,63 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<section class="relative not-prose" {...id ? { id } : {}}>
+  <!-- Background Image -->
+  <div class="relative h-[480px] sm:h-[520px] md:h-[580px] overflow-hidden rounded-xl shadow-md">
+    {image && (
+      typeof image === 'string' ? (
+        <Fragment set:html={image} />
+      ) : (
+        <Image
+          class="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          {...image}
+        />
+      )
+    )}
+
+    <!-- Optional dark overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+    <!-- Content Card -->
+    <div class="absolute inset-0 flex items-center justify-center px-4">
+      <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-6 sm:p-10 rounded-xl max-w-2xl text-center shadow-lg">
+        {tagline && (
+          <p class="text-sm text-blue-600 dark:text-blue-300 font-semibold uppercase mb-2" set:html={tagline} />
+        )}
+        {title && (
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3" set:html={title} />
+        )}
+        {subtitle && (
+          <p class="text-base text-gray-700 dark:text-slate-300 mb-6" set:html={subtitle} />
+        )}
+        {actions && (
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            {Array.isArray(actions) ? (
+              actions.map((action) => (
+                <Button {...(action || {})} class="w-full sm:w-auto" />
+              ))
+            ) : (
+              <Fragment set:html={actions} />
+            )}
+          </div>
+        )}
+        {content && <Fragment set:html={content} />}
+      </div>
+    </div>
+  </div>
+</section>

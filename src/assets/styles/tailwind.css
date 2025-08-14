@@ -1,0 +1,130 @@
+/* 🌍 Base Tailwind Layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Brand Color Variables */
+:root {
+  --aw-color-primary: #0078D7;     /* Electric Blue */
+  --aw-color-secondary: #FDB813;  /* Energy Yellow */
+  --aw-color-accent: #00A86B;     /* EV Green */
+  --aw-color-text-default: #222222;
+  --aw-color-text-muted: #666666;
+  --aw-color-bg-page: #F7F9FC;
+  --aw-color-bg-page-dark: #121212;
+}
+
+.dark {
+  --aw-color-primary: #1E88E5;
+  --aw-color-secondary: #FFCF40;
+  --aw-color-accent: #24C38F;
+  --aw-color-text-default: #E0E0E0;
+  --aw-color-text-muted: #A0A0A0;
+  --aw-color-bg-page: #121212;
+}
+
+/* 📦 Custom Utility Classes */
+@layer utilities {
+  .bg-page {
+    background-color: var(--aw-color-bg-page);
+  }
+  .bg-dark {
+    background-color: var(--aw-color-bg-page-dark);
+  }
+  .bg-light {
+    background-color: var(--aw-color-bg-page);
+  }
+  .text-page {
+    color: var(--aw-color-text-default);
+  }
+  .text-muted {
+    color: var(--aw-color-text-muted);
+  }
+}
+
+/* 🚀 Component Styles */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full border border-primary bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800 hover:bg-secondary hover:text-white hover:border-secondary dark:text-slate-200 dark:border-primary dark:hover:bg-secondary dark:hover:border-secondary;
+  }
+
+  .btn-primary {
+    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary dark:bg-primary dark:border-primary;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary text-page border-secondary hover:bg-primary hover:border-primary hover:text-white dark:text-white dark:hover:bg-primary;
+  }
+
+  .btn-tertiary {
+    @apply btn border-none shadow-none text-muted hover:text-default dark:text-gray-400 dark:hover:text-white;
+  }
+}
+
+/* 📌 Header Scroll Styling */
+#header.scroll > div:first-child {
+  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
+  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
+}
+
+.dark #header.scroll > div:first-child,
+#header.scroll.dark > div:first-child {
+  @apply bg-page md:bg-[#121212be] border-b border-gray-500/20;
+  box-shadow: none;
+}
+
+/* 📱 Expanded Navigation */
+#header.expanded nav {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 70px !important;
+  padding: 0 5px;
+}
+
+/* 🔽 Dropdown Behavior */
+.dropdown:focus .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* 🔧 Astro Icon Tweaks */
+[astro-icon].icon-light > * {
+  stroke-width: 1.2;
+}
+
+[astro-icon].icon-bold > * {
+  stroke-width: 2.4;
+}
+
+/* 🍔 Menu Toggle Animation */
+[data-aw-toggle-menu] path {
+  @apply transition;
+}
+
+[data-aw-toggle-menu].expanded g > path:first-child {
+  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
+}
+
+[data-aw-toggle-menu].expanded g > path:last-child {
+  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
+
+/* ⚠️ Deprecated Tweaks */
+.dd *:first-child {
+  margin-top: 0;
+}
+@layer utilities {
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    30% { opacity: 0.6; }
+    60% { opacity: 0.85; }
+    80% { opacity: 0.7; }
+  }
+
+  .flicker {
+    animation: flicker 1s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import workshopImage from '~/assets/images/ev-workshop.jpg'; // Update as needed
+import benefitImage from '~/assets/images/ev-workshop.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'EV Workshop Practice' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="EV Workshop Practice"
+    tagline="Safety • Tools • Real-World Skills"
+    image={{ src: workshopImage, alt: 'EV workshop training session' }}
+  >
+    <Fragment slot="subtitle">
+      This course provides hands-on training in EV service environments, focusing on safety protocols, tool usage, and practical maintenance procedures.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Workshop Safety',
+        description: 'Master high-voltage safety procedures, PPE usage, and emergency protocols.',
+      },
+      {
+        title: 'Tool Familiarization',
+        description: 'Get hands-on with EV-specific tools, diagnostic equipment, and service gear.',
+      },
+      {
+        title: 'Service Procedures',
+        description: 'Practice battery removal, motor inspection, and system calibration in a workshop setting.',
+      },
+      {
+        title: 'Team Collaboration',
+        description: 'Learn how to work effectively in service teams, follow SOPs, and document repairs.',
+      },
+    ]}
+    image={{ src: workshopImage, alt: 'EV workshop tools and technician training' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is essential for anyone entering the EV service field, offering real-world experience in a professional workshop environment.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Hands-On Experience',
+        description: 'Apply your knowledge in a fully equipped EV workshop with real vehicles and systems.',
+      },
+      {
+        title: 'Safety Certification',
+        description: 'Earn credentials in EV safety and workshop readiness.',
+      },
+      {
+        title: 'Career Preparation',
+        description: 'Build confidence and competence for roles in EV service centers and technical support.',
+      },
+      {
+        title: 'Professional Standards',
+        description: 'Learn to follow industry-standard procedures and documentation practices.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV workshop lab and technician tools' }}
+  >
+    <span slot="content">
+      <p class="text-lg">EV Workshop Practice bridges the gap between theory and application. It’s your launchpad into the electric vehicle service industry.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-gray-100 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Ready to get your hands dirty (safely)? Let’s get you workshop-ready.</p>
+  </div>
+</PageLayout>

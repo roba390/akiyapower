@@ -1,0 +1,95 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+
+import chargingImage from '~/assets/images/charging-statiom.jpg'; // update filename if needed
+import chargingBenefitImage from '~/assets/images/ev-charging.jpg'; // update filename if needed
+---
+
+<PageLayout metadata={{ title: 'Charging Systems Training' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="Charging Systems"
+    tagline="Installation • Maintenance • Safety"
+    image={{ src: chargingImage, alt: 'EV Charging Station' }}
+  >
+    <Fragment slot="subtitle">
+      Learn how to set up, maintain, and troubleshoot AC and DC charging systems—including off-grid setups and commercial infrastructure tailored to Ethiopia’s evolving EV grid.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Charger Types',
+        description: 'Explore AC Level 1, Level 2, and DC fast charging systems—design, specs, and use cases.',
+      },
+      {
+        title: 'Installation Procedures',
+        description: 'Master safe setup, power routing, voltage requirements, and code compliance.',
+      },
+      {
+        title: 'Diagnostics & Maintenance',
+        description: 'Troubleshoot faults, connector issues, overheating, and firmware problems.',
+      },
+      {
+        title: 'Safety Protocols',
+        description: 'Learn grounding, isolation, fire prevention standards, and emergency handling.',
+      },
+    ]}
+    image={{ src: chargingImage, alt: 'Charging Setup Workshop' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is ideal for technicians, electricians, and engineers looking to specialize in EV charging infrastructure and service operations.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Hands-On Charger Installs',
+        description: 'Wire, configure, and test actual AC/DC units in simulated environments.',
+      },
+      {
+        title: 'Grid-Aware Curriculum',
+        description: 'Learn about load balancing, smart charging, and sustainable deployment.',
+      },
+      {
+        title: 'Career-Ready Tools',
+        description: 'Use commercial-grade installation and fault detection devices.',
+      },
+      {
+        title: 'Standard Compliance',
+        description: 'Follow Ethiopian EV charging codes and international protocols.',
+      },
+    ]}
+    image={{ src: chargingBenefitImage, alt: 'Trainees installing EV chargers' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Charging systems are the backbone of EV adoption. This course equips you to build, maintain, and optimize them for Ethiopia’s growing electric grid.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-indigo-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Only a few seats left for the October session. Apply early to guarantee admission.</p>
+  </div>
+</PageLayout>

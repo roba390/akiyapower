@@ -1,0 +1,45 @@
+backend:
+  name: filesystem
+  api_root: http://localhost:3000/api
+  branch: main
+
+local_backend: true
+
+media_folder: 'src/assets/images'
+public_folder: '/_astro'
+
+collections:
+  - name: "courses"
+    label: "Courses"
+    folder: "src/pages/courses"
+    extension: "astro"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "Next Session", name: "nextSession", widget: "date" }
+      - { label: "Overview", name: "overview", widget: "text" }
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+      - label: "Benefit Image"
+        name: "benefitImage"
+        widget: "image"
+      - label: "Topics Covered"
+        name: "topics"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "Benefits"
+        name: "benefits"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "CTA Button Text"
+        name: "ctaText"
+        widget: "string"
+        default: "Contact Us to Enroll"

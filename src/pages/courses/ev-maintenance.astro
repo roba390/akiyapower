@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import evImage from '~/assets/images/ev-training-class.jpg'; // Update as needed
+import benefitImage from '~/assets/images/ev-core-2.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'Intro to EV and Safety' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="Intro to EV and Safety"
+    tagline="Understand • Protect • Prepare"
+    image={{ src: evImage, alt: 'Technician learning EV safety protocols' }}
+  >
+    <Fragment slot="subtitle">
+      This foundational course introduces electric vehicle systems and the critical safety procedures required when working with high-voltage components.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'EV Architecture Basics',
+        description: 'Explore the evolution of electric vehicles and their core systems.',
+      },
+      {
+        title: 'Safety Standards & PPE',
+        description: 'Learn industry-standard safety protocols and personal protective equipment usage.',
+      },
+      {
+        title: 'High-Voltage Awareness',
+        description: 'Understand the risks and handling procedures for high-voltage EV systems.',
+      },
+      {
+        title: 'Emergency Response',
+        description: 'Prepare for fault scenarios and apply safe shutdown techniques.',
+      },
+    ]}
+    image={{ src: evImage, alt: 'EV safety training in progress' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is ideal for beginners, technicians, and anyone entering the EV service field. It lays the groundwork for advanced EV diagnostics and maintenance training.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Industry-Relevant Curriculum',
+        description: 'Content aligned with global EV safety standards and best practices.',
+      },
+      {
+        title: 'Hands-On Demonstrations',
+        description: 'Experience real-world safety scenarios and equipment handling.',
+      },
+      {
+        title: 'Foundation for Certification',
+        description: 'Build the knowledge base required for future EV technician certification.',
+      },
+      {
+        title: 'Flexible Learning',
+        description: 'Designed to accommodate both full-time students and working professionals.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV safety gear and training tools' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Safety is the cornerstone of EV service. This course ensures you start your journey with the right mindset and tools to protect yourself and others.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Reach out to learn more about course schedules and enrollment options.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import evImage from '~/assets/images/ev-core.jpg'; // Update as needed
+import benefitImage from '~/assets/images/battery-training.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'Components of EV' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="Components of EV"
+    tagline="Explore • Understand • Apply"
+    image={{ src: evImage, alt: 'EV components laid out for training' }}
+  >
+    <Fragment slot="subtitle">
+      This course breaks down the essential components of electric vehicles, helping learners understand how each part contributes to performance, safety, and efficiency.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Battery Systems',
+        description: 'Understand battery pack configurations, management systems, and energy flow.',
+      },
+      {
+        title: 'Power Electronics',
+        description: 'Explore inverters, converters, and controllers that regulate EV performance.',
+      },
+      {
+        title: 'Traction Motors',
+        description: 'Learn how electric motors generate torque and interact with the drivetrain.',
+      },
+      {
+        title: 'Charging Infrastructure',
+        description: 'Review onboard chargers, connectors, and external charging stations.',
+      },
+    ]}
+    image={{ src: evImage, alt: 'EV component training session' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is ideal for engineering students, auto technicians, and EV enthusiasts looking to deepen their understanding of how electric vehicles function from the inside out.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Comprehensive Breakdown',
+        description: 'Covers mechanical, electrical, and software-driven components of EVs.',
+      },
+      {
+        title: 'Hands-On Learning',
+        description: 'Engage with real EV parts and diagnostic tools during practical sessions.',
+      },
+      {
+        title: 'Career Relevance',
+        description: 'Build foundational knowledge for roles in EV service, design, and manufacturing.',
+      },
+      {
+        title: 'Modular Structure',
+        description: 'Each topic is structured for easy integration into broader EV training programs.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV component lab setup' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Understanding EV components is key to diagnosing issues, improving performance, and innovating in the electric mobility space.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-yellow-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Let us know if you’d like to join or customize this course for your team.</p>
+  </div>
+</PageLayout>

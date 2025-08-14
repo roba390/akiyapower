@@ -1,0 +1,143 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+
+// Import the background image file
+import evTrainingClassImage from '~/assets/images/ev-training-class.jpg';
+
+const metadata = {
+  title: 'Meet Our EV Trainers',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    title="Powering the Future of EV Education"
+    tagline="Expertise. Innovation. Real-World Impact."
+    image={{
+      src: evTrainingClassImage,
+      alt: 'EV training class in session',
+    }}
+  >
+    <Fragment slot="subtitle">
+      Behind every successful EV professional is a great mentor. Our instructors combine field expertise with a passion for teaching—guiding learners across electric vehicle systems, diagnostics, and infrastructure.
+    </Fragment>
+  </Hero>
+
+  <div class="bg-blue-50 dark:bg-transparent">
+    <Features3
+      title="Our Expert Faculty"
+      subtitle="Meet the highly qualified team of professionals who will guide you to success."
+      columns={3}
+      defaultIcon="tabler:user-star"
+      items={[
+        {
+          title: 'Yared Habtemariam',
+          description:
+            'An Automotive Engineer with a passion for teaching foundational skills in EV maintenance and vehicle systems.',
+          icon: 'tabler:car',
+          image: {
+            src: 'https://placehold.co/400x400?text=Yared+H.',
+            alt: 'Photo of Yared Habtemariam',
+          },
+        },
+        {
+          title: 'Andebet Gedamu',
+          description:
+            'Holding a PhD in Chemical Engineering, Andebet specializes in advanced battery technology and materials science for EVs.',
+          icon: 'tabler:flask',
+          image: {
+            src: 'https://placehold.co/400x400?text=Andebet+G.',
+            alt: 'Photo of Andebet Gedamu',
+          },
+        },
+        {
+          title: 'Ermiyas Getnet',
+          description:
+            'An expert Electronics Technician, Ermiyas focuses on the intricate electronic components and control systems within electric vehicles.',
+          icon: 'tabler:cpu',
+          image: {
+            src: 'https://placehold.co/400x400?text=Ermiyas+G.',
+            alt: 'Photo of Ermiyas Getnet',
+          },
+        },
+        {
+          title: 'Marsilas Darsema',
+          description:
+            'With an MSc in Electrical Engineering, Marsilas is an expert in the high-voltage systems and power electronics of modern EVs.',
+          icon: 'tabler:bolt',
+          image: {
+            src: 'https://placehold.co/400x400?text=Marsilas+D.',
+            alt: 'Photo of Marsilas Darsema',
+          },
+        },
+        {
+          title: 'Milk’ias Birhanu',
+          description:
+            'A PhD in Electrical Engineering, Milk’ias brings deep expertise in complex electrical diagnostics and system integration.',
+          icon: 'tabler:settings',
+          image: {
+            src: 'https://placehold.co/400x400?text=Milkias+B.',
+            alt: 'Photo of Milk’ias Birhanu',
+          },
+        },
+        {
+          title: 'Samson Birhanu',
+          description:
+            'A Manufacturing Technologist (BSc) who guides students through the production processes and quality control of EV components.',
+          icon: 'tabler:tool',
+          image: {
+            src: 'https://placehold.co/400x400?text=Samson+B.',
+            alt: 'Photo of Samson Birhanu',
+          },
+        },
+        {
+          title: 'Semalegn Shifaw',
+          description:
+            'An Electrical Engineer (MSc), Semalegn is a specialist in EV charging infrastructure and energy management systems.',
+          icon: 'tabler:plug',
+          image: {
+            src: 'https://placehold.co/400x400?text=Semalegn+S.',
+            alt: 'Photo of Semalegn Shifaw',
+          },
+        },
+        {
+          title: 'Sintayehu Alemnmew',
+          description:
+            'With an MSc in Electrical Engineering, Sintayehu provides hands-on training in motor control systems and EV powertrain technology.',
+          icon: 'tabler:engine',
+          image: {
+            src: 'https://placehold.co/400x400?text=Sintayehu+A.',
+            alt: 'Photo of Sintayehu Alemnmew',
+          },
+        },
+        {
+          title: 'Temesgen Taye',
+          description:
+            'An Electrical Engineer (MSc) focusing on advanced diagnostics and troubleshooting of complex electrical faults in EVs.',
+          icon: 'tabler:alert-triangle',
+          image: {
+            src: 'https://placehold.co/400x400?text=Temesgen+T.',
+            alt: 'Photo of Temesgen Taye',
+          },
+        },
+      ]}
+    />
+  </div>
+
+  <section class="bg-blue-50 dark:bg-transparent py-10 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-4">Want to Learn From the Best?</h2>
+      <p class="text-gray-700 mb-6">
+        Whether you're just starting your EV journey or ready to specialize in diagnostics, our instructors are here to guide you every step of the way.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</Layout>

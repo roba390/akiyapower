@@ -1,0 +1,167 @@
+---
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+
+// Import the new images from your assets folder
+// Note: The file path is relative to the component's location.
+// I've assumed your component is one level up from the assets folder.
+import male from '../assets/images/male.png';
+import female1 from '../assets/images/female1.png';
+import male2 from '../assets/images/male2.png';
+import female3 from '../assets/images/female3.png';
+import female4 from '../assets/images/female4.png';
+---
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
+      <img
+        src={female3.src}
+        alt="Testimonial character 1"
+        class="rounded-full mb-4 w-20 h-20 object-cover"
+      />
+      <p class="italic text-gray-700 text-center mb-4">
+        "ይህ ስልጠና ህይወቴን ቀይሮታል! በተግባር ላይ ያተኮረው አካሄድ ሁሉንም ነገር በቀላሉ እንድገነዘብ አድርጎኛል። በጣም እመክራለሁ።"
+      </p>
+      <p class="font-semibold text-green-700">አስቴር ከበደ (Aster Kebede)</p>
+      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+    </div>
+
+    <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
+      <img
+        src={male.src}
+        alt="Testimonial character 2"
+        class="rounded-full mb-4 w-20 h-20 object-cover"
+      />
+      <p class="italic text-gray-700 text-center mb-4">
+        "The instructors are experts and really care about your success. The course content is spot on!"
+      </p>
+      <p class="font-semibold text-green-700">ተስፋዬ ለማ (Tesfaye Lemma)</p>
+      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+    </div>
+
+    <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
+      <img
+        src={female1.src}
+        alt="Testimonial character 3"
+        class="rounded-full mb-4 w-20 h-20 object-cover"
+      />
+      <p class="italic text-gray-700 text-center mb-4">
+        "በጣም አስደናቂ ተሞክሮ እና ለገሃዱ ዓለም የሚያዘጋጅ ስልጠና ነው። ፕሮግራሙን ከጨረስኩ በኋላ በሳምንታት ውስጥ ሥራ አግኝቻለሁ።"
+      </p>
+      <p class="font-semibold text-green-700">ሰላማዊት አበበ (Selamawit Abebe)</p>
+      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+    </div>
+
+    <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
+      <img
+        src={male2.src}
+        alt="Testimonial character 4"
+        class="rounded-full mb-4 w-20 h-20 object-cover"
+      />
+      <p class="italic text-gray-700 text-center mb-4">
+        "The best investment I made for my career. The safety training is thorough and invaluable."
+      </p>
+      <p class="font-semibold text-green-700">ደረጀ ሃይሌ (Dereje Haile)</p>
+      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+    </div>
+
+    <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
+      <img
+        src={female4.src} alt="Testimonial character 5"
+        class="rounded-full mb-4 w-20 h-20 object-cover"
+      />
+      <p class="italic text-gray-700 text-center mb-4">
+        "ምርጥ አሰልጣኞች እና ድንቅ ስርአተ-ትምህርት ነው። አሁን በዘመናዊ የኤሌክትሪክ መኪና ሞዴሎች ላይ በሙሉ መተማመን መስራት እችላለሁ።"
+      </p>
+      <p class="font-semibold text-green-700">ማህሌት ዘውዱ (Mahlet Zewdu)</p>
+      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<style>
+  .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  /* Ensure Amharic font displays well */
+  .swiper-slide p {
+    font-family: 'Nyala', 'Roboto', sans-serif;
+  }
+</style>
+
+<script is:inline>
+  if (!window.Swiper) {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+    script.onload = () => waitForSwiperElement().then(initSwiper);
+    document.head.appendChild(script);
+  } else {
+    waitForSwiperElement().then(initSwiper);
+  }
+
+  let swiperInstance = null;
+
+  function initSwiper() {
+    if (swiperInstance) {
+      swiperInstance.destroy(true, true);
+    }
+
+    swiperInstance = new window.Swiper('.mySwiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      speed: 1000,
+      loop: true,
+    });
+  }
+
+  function waitForSwiperElement() {
+    return new Promise((resolve) => {
+      const check = () => {
+        if (document.querySelector('.mySwiper')) {
+          resolve();
+        } else {
+          requestAnimationFrame(check);
+        }
+      };
+      check();
+    });
+  }
+
+  document.addEventListener('astro:after-swap', () => {
+    waitForSwiperElement().then(initSwiper);
+  });
+</script>

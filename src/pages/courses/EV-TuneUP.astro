@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import differentialImage from '~/assets/images/ev-core-2.jpg'; // Update as needed
+import benefitImage from '~/assets/images/repair.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'EV Differential & Tune-Up' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="EV Differential & Tune-Up"
+    tagline="Drivetrain • Inspection • Service"
+    image={{ src: differentialImage, alt: 'EV differential training' }}
+  >
+    <Fragment slot="subtitle">
+      This course covers electric vehicle drivetrain systems, focusing on differential operation, wear diagnostics, and essential tune-up procedures for long-term performance.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'EV Differential Systems',
+        description: 'Understand single-speed and multi-speed EV differentials, gear ratios, and torque distribution.',
+      },
+      {
+        title: 'Drivetrain Inspection',
+        description: 'Learn how to inspect shafts, joints, and mounts for wear, misalignment, and vibration.',
+      },
+      {
+        title: 'Routine Tune-Up Procedures',
+        description: 'Perform fluid checks, software updates, and mechanical adjustments for optimal performance.',
+      },
+      {
+        title: 'Service Documentation',
+        description: 'Record service history, interpret fault codes, and follow OEM maintenance schedules.',
+      },
+    ]}
+    image={{ src: differentialImage, alt: 'EV drivetrain components and tools' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is ideal for EV service technicians and mechanics who want to master drivetrain systems and deliver reliable tune-up services.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Hands-On Drivetrain Labs',
+        description: 'Work with EV differential units, inspect components, and simulate torque loads.',
+      },
+      {
+        title: 'Preventive Maintenance Skills',
+        description: 'Learn how regular tune-ups extend EV lifespan and reduce service costs.',
+      },
+      {
+        title: 'Diagnostic Confidence',
+        description: 'Use tools to detect drivetrain faults and verify alignment and balance.',
+      },
+      {
+        title: 'Industry Relevance',
+        description: 'Gain practical skills for EV workshops, fleet service, and technical support roles.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV tune-up lab and technician setup' }}
+  >
+    <span slot="content">
+      <p class="text-lg">EV differentials and tune-ups are essential for smooth, efficient driving. This course prepares you to inspect, service, and optimize them with precision.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-green-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Want to master EV drivetrain service? Reach out and let’s get started.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import evImage from '~/assets/images/battery-training.jpg'; // Update as needed
+import benefitImage from '~/assets/images/ev-training-class.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'Fundamentals of LIBS and EV Battery System' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="LIBS & EV Battery System"
+    tagline="Design • Analyze • Optimize"
+    image={{ src: evImage, alt: 'EV battery system training' }}
+  >
+    <Fragment slot="subtitle">
+      This advanced course explores Lithium-ion Battery Systems (LIBS), their chemistry, architecture, and integration into electric vehicles for optimal performance and safety.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Battery Chemistry & Cell Types',
+        description: 'Understand lithium-ion cell structures, chemistries, and performance characteristics.',
+      },
+      {
+        title: 'Battery Pack Design',
+        description: 'Explore module configurations, thermal interfaces, and mechanical integration.',
+      },
+      {
+        title: 'Battery Management Systems (BMS)',
+        description: 'Learn how BMS monitors, balances, and protects battery cells during operation.',
+      },
+      {
+        title: 'Charging & Discharging Cycles',
+        description: 'Analyze energy flow, efficiency, and degradation patterns over time.',
+      },
+    ]}
+    image={{ src: evImage, alt: 'LIBS components and battery diagnostics' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is tailored for battery engineers, researchers, and advanced learners seeking deep technical insight into EV energy systems and safety protocols.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Advanced Technical Focus',
+        description: 'Covers both theoretical and applied aspects of LIBS and EV battery systems.',
+      },
+      {
+        title: 'Lab-Based Learning',
+        description: 'Hands-on sessions with battery analyzers, thermal sensors, and BMS simulators.',
+      },
+      {
+        title: 'Industry Alignment',
+        description: 'Content reflects current trends in EV battery design and safety engineering.',
+      },
+      {
+        title: 'Research-Ready Foundation',
+        description: 'Ideal for those pursuing innovation or academic research in energy storage.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV battery lab and testing equipment' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Mastering LIBS is essential for anyone working on the future of electric mobility. This course equips you with the tools and knowledge to lead in battery innovation.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-purple-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Interested in battery systems? Reach out to explore enrollment and lab access.</p>
+  </div>
+</PageLayout>

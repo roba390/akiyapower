@@ -1,0 +1,94 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import thermalImage from '~/assets/images/ev-core.jpg'; // Update as needed
+import benefitImage from '~/assets/images/ev-core-2.jpg'; // Update as needed
+---
+
+<PageLayout metadata={{ title: 'Electric Thermal Management System' }}>
+  <!-- Hero Section -->
+  <Hero
+    title="Electric Thermal Management System"
+    tagline="Cooling • Heating • Efficiency"
+    image={{ src: thermalImage, alt: 'EV thermal system training' }}
+  >
+    <Fragment slot="subtitle">
+      Learn how electric vehicles manage heat across critical components to ensure safety, performance, and energy efficiency.
+    </Fragment>
+  </Hero>
+
+  <!-- Course Overview -->
+  <Content
+    tagline="Course Overview"
+    title="What You'll Learn"
+    isReversed
+    items={[
+      {
+        title: 'Thermal System Architecture',
+        description: 'Understand the layout and function of cooling loops, heat exchangers, and HVAC systems in EVs.',
+      },
+      {
+        title: 'Battery Cooling & Heating',
+        description: 'Explore techniques for maintaining optimal battery temperature during charging and discharging.',
+      },
+      {
+        title: 'Cabin Climate Control',
+        description: 'Learn how electric HVAC systems operate efficiently without traditional combustion heat sources.',
+      },
+      {
+        title: 'Diagnostics & Maintenance',
+        description: 'Use tools to inspect thermal systems, detect leaks, and ensure proper fluid circulation.',
+      },
+    ]}
+    image={{ src: thermalImage, alt: 'EV thermal components and sensors' }}
+  >
+    <span slot="content">
+      <p class="text-lg">This course is designed for EV technicians, engineers, and service professionals who want to master the thermal dynamics of electric vehicles.</p>
+    </span>
+  </Content>
+
+  <!-- Program Benefits -->
+  <Content
+    tagline="Why Take This Course"
+    title="Key Benefits"
+    items={[
+      {
+        title: 'Hands-On Cooling System Labs',
+        description: 'Work with real EV thermal systems, including battery chillers and heat pumps.',
+      },
+      {
+        title: 'Energy Efficiency Insights',
+        description: 'Learn how thermal management affects range, performance, and component longevity.',
+      },
+      {
+        title: 'Safety Protocols',
+        description: 'Understand how to safely service high-voltage thermal systems and handle refrigerants.',
+      },
+      {
+        title: 'Industry Relevance',
+        description: 'Gain skills applicable to EV maintenance, design, and climate control engineering.',
+      },
+    ]}
+    image={{ src: benefitImage, alt: 'EV thermal lab and technician tools' }}
+  >
+    <span slot="content">
+      <p class="text-lg">Thermal management is critical to EV reliability. This course equips you with the knowledge to optimize and troubleshoot these systems effectively.</p>
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Ready to master EV thermal systems? Let’s get you started.</p>
+  </div>
+</PageLayout>

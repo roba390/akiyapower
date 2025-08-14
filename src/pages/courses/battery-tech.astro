@@ -1,0 +1,97 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+
+import batteryImage from '~/assets/images/battery-training.jpg'; // replace with your actual image
+import batteryBenefitImage from '~/assets/images/ev-battery-1.jpg'; // replace with your actual image
+
+const metadata = {
+  title: 'Battery Technology Training',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    title="Battery Technology"
+    tagline="Lithium-Ion Systems, Safety, and Management"
+    image={{ src: batteryImage, alt: 'Battery Training' }}
+  >
+    <Fragment slot="subtitle">
+      This course dives deep into electric vehicle battery systems, safety protocols, diagnostics, and thermal management techniques used across modern EV platforms.
+    </Fragment>
+  </Hero>
+
+  <Content
+    isReversed
+    tagline="Course Overview"
+    title="Course Topics"
+    items={[
+      {
+        title: 'Battery Architecture',
+        description: 'Cell types, modules, packs, and configuration standards.',
+      },
+      {
+        title: 'BMS (Battery Management System)',
+        description: 'Monitoring, balancing, and fault response protocols.',
+      },
+      {
+        title: 'Thermal Management',
+        description: 'Cooling techniques, sensors, and heat dissipation control.',
+      },
+      {
+        title: 'Safety Procedures',
+        description: 'Handling, inspection, and risk mitigation techniques.',
+      },
+    ]}
+    image={{ src: batteryImage, alt: 'Battery Training Session' }}
+  >
+    <span slot="content">
+      <h3 class="text-2xl font-bold mb-2">Why Take This Course?</h3>
+      <p>Electric vehicle battery systems are the heart of every EV. Learn how to test, inspect, and protect them with professional-grade skills and tools.</p>
+    </span>
+  </Content>
+  <Content
+  tagline="Why This Course Matters"
+  title="Program Benefits"
+  items={[
+    {
+      title: 'Certification-Ready',
+      description: 'Aligned with local and global lithium battery handling standards.',
+    },
+    {
+      title: 'Hands-On Labs',
+      description: 'Safely dissect packs, work with sensors, and simulate cell balancing.',
+    },
+    {
+      title: 'Real-World Scenarios',
+      description: 'Train with damaged and healthy battery cases for inspection accuracy.',
+    },
+    {
+      title: 'EV Industry Relevance',
+      description: 'Applicable knowledge for buses, cars, and grid-connected storage.',
+    },
+  ]}
+  image={{ src: batteryBenefitImage, alt: 'Battery training demonstration' }}
+>
+  <span slot="content">
+    <h3 class="text-2xl font-bold mb-2">Powering the Future</h3>
+    <p class="text-lg">Graduates become battery techs who understand not just chemistry—but how to manage it safely in motion.</p>
+  </span>
+
+  <span slot="bg">
+    <div class="absolute inset-0 bg-yellow-50 dark:bg-transparent"></div>
+  </span>
+</Content>
+ <!-- Call to Action -->
+  <div class="text-center py-12">
+    <a
+      href="/contact"
+      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
+    >
+      Contact Us to Enroll
+    </a>
+    <p class="text-muted mt-4">Only a few seats left for the October session. Apply early to guarantee admission.</p>
+  </div>
+
+</Layout>

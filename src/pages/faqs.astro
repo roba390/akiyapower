@@ -1,0 +1,41 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'Frequently Asked Questions',
+};
+
+const faqItems = [
+  {
+    title: 'What programs does Akiya Power Tech offer?',
+    description: 'We provide hands-on EV maintenance, battery systems, and charging infrastructure training tailored to Ethiopia’s growing electric vehicle sector.',
+  },
+  {
+    title: 'Do I need prior experience to enroll?',
+    description: 'No prior experience is required. Our beginner modules start from the basics and progressively build toward advanced diagnostics.',
+  },
+  {
+    title: 'Where is the training center located?',
+    description: 'Our main facility is in Addis Ababa, near Entoto Tech Park. Expansion sites are planned for Hawassa and other cities.',
+  },
+  {
+    title: 'Are certifications recognized?',
+    description: 'Yes. All course completions come with certificates aligned with local and international training benchmarks.',
+  },
+  {
+    title: 'How do I apply or enroll?',
+    description: 'Visit the Contact page to reach us or use the “Enroll” button in the header for registration and intake schedules.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <FAQs
+    title="FAQs"
+    subtitle="Everything you need to know before enrolling at Akiya Power Tech"
+    tagline="Your Questions Answered"
+    items={faqItems}
+    columns={2}
+  />
+</Layout>

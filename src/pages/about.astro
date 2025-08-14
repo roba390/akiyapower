@@ -1,0 +1,202 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import aboutImage from '~/assets/images/About-page.jpg';
+import evWorkshopImage from '~/assets/images/ev-workshop.jpg';
+
+
+const metadata = {
+  title: 'About Akiya Power Tech',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="About Akiya Power Tech"
+    image={{
+      src: aboutImage,
+      alt: 'Inside our EV training center',
+    }}
+  >
+
+    <Fragment slot="title">
+      Empowering Africa’s EV Future <br />
+      <span class="text-accent dark:text-white">Through Practical Technical Training</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Akiya Power Tech Training Center is Ethiopia’s emerging leader in electric vehicle training. We prepare technicians, students, and professionals for the future of transport with hands-on skills, modern labs, and industry-aligned curriculum.
+    </Fragment>
+  </Hero>
+
+  <Stats
+    title="Key Statistics"
+    stats={[
+      { title: 'Established', amount: '2020' },
+      { title: 'Certified Courses', amount: '10' },
+      { title: 'Students Trained', amount: '320+' },
+      { title: 'EV Workshops', amount: '6' },
+    ]}
+  />
+
+  <Features3
+    title="What We Teach"
+    subtitle="We provide in-depth, practical training for electric vehicle technicians. Our programs are designed to match global standards while focusing on local relevance."
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'Battery Systems',
+        description:
+          'Learn battery diagnostics, safety protocols, and energy storage fundamentals.',
+        icon: 'tabler:battery-automotive',
+      },
+      {
+        title: 'Charging Infrastructure',
+        description:
+          'Understand EV charging stations, installation processes, and maintenance.',
+        icon: 'tabler:charging-pile',
+      },
+      {
+        title: 'Powertrain Diagnostics',
+        description:
+          'Hands-on training in motor systems, controllers, and fault detection.',
+        icon: 'tabler:settings',
+      },
+    ]}
+  />
+
+  <Features3
+  columns={3}
+  isAfterContent={true}
+  items={[
+    {
+      title: 'EV Safety',
+      description:
+        'Protocols, insulation handling, and emergency procedures tailored to Ethiopian standards.',
+      icon: 'tabler:shield-check',
+    },
+    {
+      title: 'Green Mobility',
+      description:
+        'Sustainability training and eco-conscious practices for future technicians.',
+      icon: 'tabler:leaf',
+    },
+    {
+      title: 'Smart Systems',
+      description:
+        'Intro to IoT integration in modern EVs and connected infrastructure.',
+      icon: 'tabler:cpu',
+    },
+  ]}
+  image={{
+    src: evWorkshopImage,
+    alt: 'EV Workshop',
+  }}
+/>
+
+
+  <Steps2
+    title="Our Core Values"
+    subtitle="Our philosophy at Akiya Power Tech goes beyond machines. We believe in empowering human potential."
+    items={[
+      {
+        title: 'Hands-On Learning',
+        description:
+          'Our training is built around practical workshops and real-world scenarios—no boring lectures.',
+      },
+      {
+        title: 'Local Relevance',
+        description:
+          'We build courses that address local EV challenges and infrastructure needs.',
+      },
+      {
+        title: 'Global Standards',
+        description:
+          'We align with international certifications, preparing trainees for opportunities across Africa and beyond.',
+      },
+    ]}
+  />
+
+  <Steps2
+    title="Achievements"
+    subtitle="In just a short time, Akiya Power Tech has made strides in awareness, engagement, and impact."
+    isReversed={true}
+    callToAction={{
+      text: 'View our programs',
+      href: '/courses',
+    }}
+    items={[
+      {
+        title: 'National TV Features',
+        description: 'Our team has been featured on local media for leading EV education in Ethiopia.',
+        icon: 'tabler:device-tv',
+      },
+      {
+        title: 'Student Success Stories',
+        description: 'Graduates have joined EV workshops, mobile service units, and renewable startups.',
+        icon: 'tabler:user-star',
+      },
+      {
+        title: 'Industry Partnerships',
+        description: 'We’ve connected with suppliers and importers to align training with market demands.',
+        icon: 'tabler:user',
+      },
+    ]}
+  />
+
+  <Features2
+    title="Where We Are"
+    tagline="Visit our training center"
+    columns={2}
+    items={[
+      {
+        title: 'Addis Ababa, Ethiopia',
+        description: 'Meskel Flower, near Dreamline Hotel, inside Yami car sales compound',
+      },
+      {
+        title: 'Coming soon: Hawassa, Adama',
+        description: 'Expansion planned in Most parts of Ethiopia by 2026',
+      },
+    ]}
+  />
+
+  <div class="py-12 px-4 md:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-8">Find Us on the Map</h2>
+      <div class="aspect-w-16 aspect-h-9 w-full rounded-lg overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d398.3775879434841!2d38.766378982034595!3d8.994942160642667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2set!4v1755163922864!5m2!1sen!2set"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <Features2
+    title="Get in Touch"
+    tagline="Ask about courses or partnerships"
+    columns={2}
+    items={[
+      {
+        title: 'Email',
+        description: 'contact@akiyapowertech.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Phone',
+        description: '+251 900 00 58 09 || +251 911 11 39 94',
+        icon: 'tabler:phone',
+      },
+    ]}
+  />
+</Layout>

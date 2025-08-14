@@ -1,0 +1,38 @@
+---
+// ToggleTheme.astro
+import { Icon } from 'astro-icon/components';
+import { UI } from 'astrowind:config';
+
+export interface Props {
+  label?: string;
+  class?: string;
+  iconClass?: string;
+}
+
+const {
+  label = 'Toggle between Dark and Light mode',
+  class:
+    className = 'text-muted dark:text-yellow-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center',
+  iconClass = 'w-6 h-6 transition-transform duration-200 transform hover:scale-110',
+} = Astro.props;
+---
+
+{!(UI.theme && UI.theme.endsWith(':only')) && (
+  <button
+    type="button"
+    class={className}
+    aria-label={label}
+    data-aw-toggle-color-scheme
+  >
+    <span class="flex items-center justify-center relative w-6 h-6">
+      <Icon
+        name="tabler:bulb"
+        class={`absolute w-full h-full hidden dark:inline-block flicker`}
+      />
+      <Icon
+        name="tabler:bulb-off"
+        class={`absolute w-full h-full dark:hidden`}
+      />
+    </span>
+  </button>
+)}

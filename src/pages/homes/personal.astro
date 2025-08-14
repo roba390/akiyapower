@@ -1,0 +1,53 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+
+const metadata = {
+  title: 'Our Trainers',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section ******************* -->
+
+  <Hero
+    id="hero"
+    title="Meet Our EV Experts"
+    tagline="The Akiya Power Tech Training Team"
+  >
+    <Fragment slot="subtitle">
+      Our trainers bring industry experience, technical certification, and a passion for education to every course.
+      Whether it's EV battery systems, charging infrastructure, or hands-on diagnostics—they lead with excellence.
+    </Fragment>
+  </Hero>
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Instructor Profiles"
+    subtitle="Certified and Experienced Trainers Ready to Guide Your EV Journey"
+    columns={3}
+    defaultIcon="tabler:user-star"
+    items={[
+      {
+        title: 'Engineer Dawit Tesfaye',
+        description:
+          '10+ years in automotive diagnostics and EV power systems. Leads battery safety and controller modules.',
+        icon: 'tabler:battery-automotive',
+      },
+      {
+        title: 'Technician Selam Berhanu',
+        description:
+          'Specialist in charging infrastructure and real-world installations. Passionate about sustainable mobility.',
+        icon: 'tabler:charging-pile',
+      },
+      {
+        title: 'Instructor Henok Mekonnen',
+        description:
+          'Focuses on EV motor diagnostics and lab-based simulations. Coordinates the advanced hands-on track.',
+        icon: 'tabler:settings',
+      },
+    ]}
+  />
+</Layout>

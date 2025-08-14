@@ -1,0 +1,179 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import TestimonialSlider from '~/components/TestimonialSlider.astro';
+import heroImage from '~/assets/images/ev-technician-hero.jpg';
+import trainingImage from '~/assets/images/ev-training-class.jpg';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+// Removed invalid Fragment import
+
+const metadata = {
+  title: 'Akiya Power Tech - EV Technician Training Center',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget - Original AstroWind Structure -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View Programs',
+        href: '/about',
+        icon: 'tabler:certificate',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+    image={{ src: heroImage, alt: 'EV Technician Training' }}
+  >
+    <span slot="title">
+      Become a Certified <span class="text-accent dark:text-white">EV Technician</span>
+    </span>
+
+    <span slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">Akiya Power Tech</span> offers professional training in electric vehicle maintenance and battery technology.</span>
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">EV Technician Certification</span>
+      Comprehensive hands-on training for the automotive industry's fastest-growing sector.
+    </span>
+  </Hero>
+
+  <!-- Features Widget - Your Akiya Content -->
+  <Features
+    id="features"
+    tagline="Our Programs"
+    title="Specialized EV Training Courses"
+    subtitle="Developed by industry experts to meet the growing demand for qualified EV technicians"
+    items={[
+      {
+        title: 'EV Systems Maintenance',
+        description: 'Master diagnostics and repair of electric vehicle powertrains and components',
+        icon: 'tabler:car',
+      },
+      {
+        title: 'Battery Technology',
+        description: 'In-depth training on lithium-ion battery systems and management',
+        icon: 'tabler:battery',
+      },
+      {
+        title: 'Charging Infrastructure',
+        description: 'Installation and maintenance of EV charging stations',
+        icon: 'tabler:plug',
+      },
+      {
+        title: 'High Voltage Safety',
+        description: 'Certification in working with high-voltage EV systems',
+        icon: 'tabler:alert-triangle',
+      },
+      {
+        title: 'Diagnostic Techniques',
+        description: 'Advanced troubleshooting for electric vehicles',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Industry Certification',
+        description: 'Prepare for recognized EV technician certifications',
+        icon: 'tabler:certificate',
+      },
+    ]}
+  />
+
+  <!-- Content Widget - Your Akiya Content -->
+  <Content
+    isReversed
+    tagline="Why Choose Us"
+    title="Superior EV Technician Training"
+    items={[
+      {
+        title: 'Industry-Experienced Instructors',
+        description: 'Learn from certified EV specialists with dealership experience',
+      },
+      {
+        title: 'Hands-On Training',
+        description: 'Practical experience with current EV models and tools',
+      },
+      {
+        title: 'Job Placement Assistance',
+        description: 'Connections with local dealerships and service centers',
+      },
+    ]}
+    image={{
+      src: trainingImage,
+      alt: 'EV Training Session',
+    }}
+  >
+    <span slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">The Future is Electric</h3>
+      Gain the skills employers are looking for in the rapidly growing EV sector
+    </span>
+
+    <span slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
+
+  <!-- Stats Widget - Your Akiya Content -->
+  <Stats
+    stats={[
+      { title: 'Graduates', amount: '200+' },
+      { title: 'Job Placement', amount: '90%' },
+      { title: 'Certified Trainers', amount: '15' },
+      { title: 'Industry Partners', amount: '25+' },
+    ]}
+  />
+<section id="testimonials" class="bg-page py-12 px-6 text-center">
+  <h2 class="text-3xl font-bold text-primary mb-4">What Our Trainees Say</h2>
+  <p class="text-muted text-lg mb-6">
+    Here are a few testimonials from graduates of Akiya Power Tech Training Center. Their success stories fuel our mission.
+  </p>
+  <TestimonialSlider />
+</section>
+
+
+  <!-- FAQs Widget - Your Akiya Content -->
+  <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Everything you need to know about our EV technician training programs"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'What are the prerequisites?',
+        description: 'Basic automotive knowledge is helpful but not required. We provide foundational training for all students.',
+      },
+      {
+        title: 'How long are the programs?',
+        description: 'Programs range from 2-week intensive training to 2-month comprehensive certifications.',
+      },
+      {
+        title: 'How do I apply or enroll?',
+        description: 'Visit the Contact page to reach us or use the “Enroll” button in the header for registration and intake schedules.',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget - Your Akiya Content -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Enroll Now',
+        href: '/contact',
+        icon: 'tabler:certificate',
+      },
+    ]}
+  >
+    <span slot="title">
+      Ready to Launch Your <span class="sm:whitespace-nowrap">EV Career?</span>
+    </span>
+    <span slot="subtitle">
+      Limited seats available for our next training session. <br class="hidden md:inline" />Apply today to secure your spot.
+    </span>
+  </CallToAction>
+</Layout>
