@@ -1,63 +1,52 @@
 ---
 import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline>
   :root {
+    /* Font settings */
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Light mode colors */
+    --aw-color-primary: rgb(250 204 21);   /* Yellow (#facc15) */
+    --aw-color-secondary: rgb(16 185 129); /* Green (#10b981) */
+    --aw-color-accent: rgb(37 99 235);     /* Blue (#2563eb) */
 
     --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-text-default: rgb(17 24 39); /* Gray-900 */
+    --aw-color-text-muted: rgb(107 114 128); /* Gray-500 */
 
+    --aw-color-bg-page: rgb(255 255 255);
     --aw-color-bg-page-dark: rgb(3 6 32);
 
     ::selection {
-      background-color: lavender;
+      background-color: rgb(250 204 21); /* Yellow highlight */
+      color: rgb(0 0 0);
     }
   }
 
   .dark {
+    /* Font settings (same in dark mode) */
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Dark mode colors */
+    --aw-color-primary: rgb(250 204 21);   /* Yellow */
+    --aw-color-secondary: rgb(16 185 129); /* Green */
+    --aw-color-accent: rgb(37 99 235);     /* Blue */
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
+    --aw-color-text-heading: rgb(243 244 246); /* Gray-100 */
+    --aw-color-text-default: rgb(229 236 246); /* Light gray */
     --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+
+    --aw-color-bg-page: rgb(3 6 32); /* Dark navy */
 
     ::selection {
-      background-color: black;
-      color: snow;
+      background-color: rgb(250 204 21); /* Yellow highlight */
+      color: rgb(0 0 0);
     }
   }
 </style>
