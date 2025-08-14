@@ -1,18 +1,38 @@
 ---
 import { UI } from 'astrowind:config';
-
-// TODO: This code is temporary
 ---
 
 <script is:inline define:vars={{ defaultTheme: UI.theme || 'system' }}>
+  function setBrandColors() {
+    const root = document.documentElement;
+    // Light/Dark mode variables
+    root.style.setProperty('--aw-color-primary', 'rgb(250 204 21)');   // Yellow
+    root.style.setProperty('--aw-color-secondary', 'rgb(16 185 129)'); // Green
+    root.style.setProperty('--aw-color-accent', 'rgb(37 99 235)');     // Blue
+
+    // Text & background defaults
+    if (root.classList.contains('dark')) {
+      root.style.setProperty('--aw-color-text-heading', 'rgb(243 244 246)');
+      root.style.setProperty('--aw-color-text-default', 'rgb(229 236 246)');
+      root.style.setProperty('--aw-color-text-muted', 'rgb(229 236 246 / 66%)');
+      root.style.setProperty('--aw-color-bg-page', 'rgb(3 6 32)');
+    } else {
+      root.style.setProperty('--aw-color-text-heading', 'rgb(0 0 0)');
+      root.style.setProperty('--aw-color-text-default', 'rgb(17 24 39)');
+      root.style.setProperty('--aw-color-text-muted', 'rgb(107 114 128)');
+      root.style.setProperty('--aw-color-bg-page', 'rgb(255 255 255)');
+    }
+  }
+
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    const matches = document.querySelectorAll('[data-aw-toggle-color-scheme] > input');
+    setBrandColors();
 
+    const matches = document.querySelectorAll('[data-aw-toggle-color-scheme] > input');
     if (matches && matches.length) {
       matches.forEach((elem) => {
         elem.checked = theme !== 'dark';
