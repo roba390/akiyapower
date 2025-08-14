@@ -8,22 +8,21 @@ export default {
     extend: {
       colors: {
         // Theme brand colors
-      primary: {
-  DEFAULT: 'var(--aw-color-primary, #facc15)', // yellow
-  light: '#fde68a',
-  dark: '#ca8a04',
-},
-secondary: {
-  DEFAULT: 'var(--aw-color-secondary, #10b981)', // green
-  light: '#34d399',
-  dark: '#047857',
-},
-accent: {
-  DEFAULT: 'var(--aw-color-accent, #2563eb)', // blue
-  light: '#3b82f6',
-  dark: '#1e40af',
-},
-
+        primary: {
+          DEFAULT: 'var(--aw-color-primary, #10b981)', // Green (fallback: green-500)
+          light: '#34d399', // green-400
+          dark: '#047857',  // green-800
+        },
+        secondary: {
+          DEFAULT: 'var(--aw-color-secondary, #facc15)', // Yellow (fallback: yellow-400)
+          light: '#fde68a', // yellow-300
+          dark: '#ca8a04',  // yellow-700
+        },
+        accent: {
+          DEFAULT: 'var(--aw-color-accent, #2563eb)', // Blue (fallback: blue-600)
+          light: '#3b82f6', // blue-500
+          dark: '#1e40af',  // blue-800
+        },
 
         // Readable text system
         default: {
