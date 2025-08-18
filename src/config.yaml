@@ -1,6 +1,6 @@
 site:
   name: Akiya Power Tech
-  site: 'https://akiyapowertech.com'   # replace with your real domain
+  site: 'https://akiyapowertech.netlify.app'   # replace with your real domain
   base: '/'
   trailingSlash: false
 
