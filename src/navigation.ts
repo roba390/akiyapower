@@ -28,7 +28,7 @@ export const headerData = {
       href: getPermalink('/about'),
     },
   ],
-  actions: [{ text: 'Enroll', href: getPermalink('/contact'), target: '_blank' }],
+  actions: [{ text: 'Enroll', href: getPermalink('/contact') }],
 };
 
 export const footerData = {
@@ -73,6 +73,6 @@ export const footerData = {
   //{ ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: '#' },
 ],
   footNote: `
-    <span class="mr-2">© 2023 Akiya Power Tech Training Center. All rights reserved.</span>
+    <span class="mr-2">© 2025 Akiya Power Tech Training Center. All rights reserved.</span>
   `,
 };
