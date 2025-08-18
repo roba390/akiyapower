@@ -6,7 +6,7 @@
 /* 🎨 Brand Color Variables */
 :root {
   --aw-color-primary: #0078D7;     /* Electric Blue */
-  --aw-color-secondary: #FDB813;  /* Energy Yellow */
+  --aw-color-secondary: #c3ba0c;  /* Energy Yellow */
   --aw-color-accent: #00A86B;     /* EV Green */
   --aw-color-text-default: #222222;
   --aw-color-text-muted: #666666;
@@ -16,7 +16,7 @@
 
 .dark {
   --aw-color-primary: #1E88E5;
-  --aw-color-secondary: #FFCF40;
+  --aw-color-secondary: #c3ba0c;
   --aw-color-accent: #24C38F;
   --aw-color-text-default: #E0E0E0;
   --aw-color-text-muted: #A0A0A0;
