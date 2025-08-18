@@ -15,8 +15,8 @@ export default {
         },
         secondary: {
           DEFAULT: 'var(--aw-color-secondary, #facc15)', // Yellow (fallback: yellow-400)
-          light: '#fde68a', // yellow-300
-          dark: '#ca8a04',  // yellow-700
+          light: '#c3ba0c', // yellow-300
+          dark: '#c3ba0c',  // yellow-700
         },
         accent: {
           DEFAULT: 'var(--aw-color-accent, #2563eb)', // Blue (fallback: blue-600)
