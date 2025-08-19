@@ -22,6 +22,15 @@ accent: {
   light: 'var(--aw-color-accent)',
   dark: 'var(--aw-color-accent)',
 },
+
+    default: {
+      DEFAULT: 'var(--aw-color-text-default)', 
+      dark: 'var(--aw-color-text-default)',
+    },
+    muted: {
+      DEFAULT: 'var(--aw-color-text-muted)', 
+      dark: 'var(--aw-color-text-muted)',
+    },
   },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
