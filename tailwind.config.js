@@ -6,35 +6,31 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      colors: {
-        // Theme brand colors
-        primary: {
-          DEFAULT: 'var(--aw-color-primary, #10b981)', // Green (fallback: green-500)
-          light: '#34d399', // green-400
-          dark: '#047857',  // green-800
-        },
-        secondary: {
-          DEFAULT: 'var(--aw-color-secondary, #facc15)', // Yellow (fallback: yellow-400)
-          light: '#c3ba0c', // yellow-300
-          dark: '#c3ba0c',  // yellow-700
-        },
-        accent: {
-          DEFAULT: 'var(--aw-color-accent, #2563eb)', // Blue (fallback: blue-600)
-          light: '#3b82f6', // blue-500
-          dark: '#1e40af',  // blue-800
-        },
-
-        // Readable text system
-        default: {
-          DEFAULT: 'var(--aw-color-text-default, #111827)', // gray-900
-          dark: '#f3f4f6', // gray-100
-        },
-        muted: {
-          DEFAULT: 'var(--aw-color-text-muted, #6b7280)', // gray-500
-          dark: '#9ca3af', // gray-400
-        },
-      },
-
+  colors: {
+    primary: {
+      DEFAULT: 'var(--aw-color-primary)', 
+      light: 'var(--aw-color-primary)', 
+      dark: 'var(--aw-color-primary)', 
+    },
+    secondary: {
+      DEFAULT: 'var(--aw-color-secondary)', 
+      light: 'var(--aw-color-secondary)', 
+      dark: 'var(--aw-color-secondary)', 
+    },
+    accent: {
+      DEFAULT: 'var(--aw-color-accent)', 
+      light: 'var(--aw-color-accent)', 
+      dark: 'var(--aw-color-accent)', 
+    },
+    default: {
+      DEFAULT: 'var(--aw-color-text-default)', 
+      dark: 'var(--aw-color-text-default)',
+    },
+    muted: {
+      DEFAULT: 'var(--aw-color-text-muted)', 
+      dark: 'var(--aw-color-text-muted)',
+    },
+  },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
         serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
