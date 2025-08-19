@@ -7,29 +7,21 @@ export default {
   theme: {
     extend: {
   colors: {
-    primary: {
-      DEFAULT: 'var(--aw-color-primary)', 
-      light: 'var(--aw-color-primary)', 
-      dark: 'var(--aw-color-primary)', 
-    },
-    secondary: {
-      DEFAULT: 'var(--aw-color-secondary)', 
-      light: 'var(--aw-color-secondary)', 
-      dark: 'var(--aw-color-secondary)', 
-    },
-    accent: {
-      DEFAULT: 'var(--aw-color-accent)', 
-      light: 'var(--aw-color-accent)', 
-      dark: 'var(--aw-color-accent)', 
-    },
-    default: {
-      DEFAULT: 'var(--aw-color-text-default)', 
-      dark: 'var(--aw-color-text-default)',
-    },
-    muted: {
-      DEFAULT: 'var(--aw-color-text-muted)', 
-      dark: 'var(--aw-color-text-muted)',
-    },
+   primary: {
+  DEFAULT: 'var(--aw-color-primary)',
+  light: 'var(--aw-color-primary)',
+  dark: 'var(--aw-color-primary)',
+},
+secondary: {
+  DEFAULT: 'var(--aw-color-secondary)',
+  light: 'var(--aw-color-secondary)',
+  dark: 'var(--aw-color-secondary)',
+},
+accent: {
+  DEFAULT: 'var(--aw-color-accent)',
+  light: 'var(--aw-color-accent)',
+  dark: 'var(--aw-color-accent)',
+},
   },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
