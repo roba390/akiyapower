@@ -4,9 +4,9 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-// Import the new images from your assets folder
-// Note: The file path is relative to the component's location.
-// I've assumed your component is one level up from the assets folder.
+import Image from '../components/common/Image.astro';
+
+// Import images (these can be PNG, WebP, or remote URLs)
 import male from '../assets/images/male.png';
 import female1 from '../assets/images/female1.png';
 import male2 from '../assets/images/male2.png';
@@ -16,70 +16,59 @@ import female4 from '../assets/images/female4.png';
 
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
+
+    <!-- Testimonial 1 -->
     <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
-      <img
-        src={female3.src}
-        alt="Testimonial character 1"
-        class="rounded-full mb-4 w-20 h-20 object-cover"
-      />
+      <Image src={female3} alt="Testimonial character 1" width="80" height="80" class="rounded-full mb-4 w-20 h-20 object-cover" />
       <p class="italic text-gray-700 text-center mb-4">
-        "ይህ ስልጠና ህይወቴን ቀይሮታል! በተግባር ላይ ያተኮረው አካሄድ ሁሉንም ነገር በቀላሉ እንድገነዘብ አድርጎኛል። በጣም እመክራለሁ።"
+        "ይህ ስልጠና ህይወቴን ቀይሮታል! ..."
       </p>
       <p class="font-semibold text-green-700">አስቴር ከበደ (Aster Kebede)</p>
       <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
     </div>
 
+    <!-- Testimonial 2 -->
     <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
-      <img
-        src={male.src}
-        alt="Testimonial character 2"
-        class="rounded-full mb-4 w-20 h-20 object-cover"
-      />
+      <Image src={male} alt="Testimonial character 2" width="80" height="80" class="rounded-full mb-4 w-20 h-20 object-cover" />
       <p class="italic text-gray-700 text-center mb-4">
-        "The instructors are experts and really care about your success. The course content is spot on!"
+        "The instructors are experts and really care about your success..."
       </p>
       <p class="font-semibold text-green-700">ተስፋዬ ለማ (Tesfaye Lemma)</p>
       <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
     </div>
 
+    <!-- Testimonial 3 -->
     <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
-      <img
-        src={female1.src}
-        alt="Testimonial character 3"
-        class="rounded-full mb-4 w-20 h-20 object-cover"
-      />
+      <Image src={female1} alt="Testimonial character 3" width="80" height="80" class="rounded-full mb-4 w-20 h-20 object-cover" />
       <p class="italic text-gray-700 text-center mb-4">
-        "በጣም አስደናቂ ተሞክሮ እና ለገሃዱ ዓለም የሚያዘጋጅ ስልጠና ነው። ፕሮግራሙን ከጨረስኩ በኋላ በሳምንታት ውስጥ ሥራ አግኝቻለሁ።"
+        "የኤሌክትሪክ መኪና ስልጠናው በጣም ውጤታማ ነበር። ..."
       </p>
-      <p class="font-semibold text-green-700">ሰላማዊት አበበ (Selamawit Abebe)</p>
-      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+      <p class="font-semibold text-green-700">ሀና መኮንን (Hanna Mekonnen)</p>
+      <p class="text-sm text-gray-500">EV Maintenance Specialist</p>
     </div>
 
+    <!-- Testimonial 4 -->
     <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
-      <img
-        src={male2.src}
-        alt="Testimonial character 4"
-        class="rounded-full mb-4 w-20 h-20 object-cover"
-      />
+      <Image src={male2} alt="Testimonial character 4" width="80" height="80" class="rounded-full mb-4 w-20 h-20 object-cover" />
       <p class="italic text-gray-700 text-center mb-4">
-        "The best investment I made for my career. The safety training is thorough and invaluable."
+        "I never imagined I could master EV technology so quickly..."
       </p>
-      <p class="font-semibold text-green-700">ደረጀ ሃይሌ (Dereje Haile)</p>
-      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+      <p class="font-semibold text-green-700">ሙሉጌታ ታደሰ (Mulugeta Tadesse)</p>
+      <p class="text-sm text-gray-500">Electric Vehicle Engineer</p>
     </div>
 
+    <!-- Testimonial 5 -->
     <div class="swiper-slide bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
-      <img
-        src={female4.src} alt="Testimonial character 5"
-        class="rounded-full mb-4 w-20 h-20 object-cover"
-      />
+      <Image src={female4} alt="Testimonial character 5" width="80" height="80" class="rounded-full mb-4 w-20 h-20 object-cover" />
       <p class="italic text-gray-700 text-center mb-4">
-        "ምርጥ አሰልጣኞች እና ድንቅ ስርአተ-ትምህርት ነው። አሁን በዘመናዊ የኤሌክትሪክ መኪና ሞዴሎች ላይ በሙሉ መተማመን መስራት እችላለሁ።"
+        "በዚህ ስልጠና በቀጥታ ሥራ ቦታ ልማት አገኘሁ። ..."
       </p>
-      <p class="font-semibold text-green-700">ማህሌት ዘውዱ (Mahlet Zewdu)</p>
-      <p class="text-sm text-gray-500">Certified Electric Vehicle Technician</p>
+      <p class="font-semibold text-green-700">መሀሪ ገብረ (Mehari Gebre)</p>
+      <p class="text-sm text-gray-500">Certified EV Technician</p>
     </div>
   </div>
+
+  <!-- Pagination -->
   <div class="swiper-pagination"></div>
 </div>
 
@@ -145,6 +134,8 @@ import female4 from '../assets/images/female4.png';
       },
       speed: 1000,
       loop: true,
+      preloadImages: false,
+      lazy: true,
     });
   }
 
