@@ -4,49 +4,54 @@ import '@fontsource-variable/inter';
 
 <style is:inline>
   :root {
-    /* Font settings */
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    /* Light mode colors */
-    --aw-color-primary: rgb(250 204 21);   /* Yellow (#facc15) */
-    --aw-color-secondary: rgb(16 185 129); /* Green (#10b981) */
-    --aw-color-accent: rgb(37 99 235);     /* Blue (#2563eb) */
+    /* 🌿 Primary: Green */
+    --aw-color-primary: rgb(34 197 94); /* Tailwind emerald-500 */
+    
+    /* 🌞 Secondary: Yellow */
+    --aw-color-secondary: rgb(234 179 8); /* Tailwind yellow-500 */
+    
+    /* 🌊 Accent: Blue */
+    --aw-color-accent: rgb(59 130 246); /* Tailwind blue-500 */
 
+    /* 🖤 Text & Background (Light Mode) */
     --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(17 24 39); /* Gray-900 */
-    --aw-color-text-muted: rgb(107 114 128); /* Gray-500 */
-
+    --aw-color-text-default: rgb(31 41 55); /* Tailwind gray-800 */
+    --aw-color-text-muted: rgb(31 41 55 / 66%);
     --aw-color-bg-page: rgb(255 255 255);
-    --aw-color-bg-page-dark: rgb(3 6 32);
 
     ::selection {
-      background-color: rgb(250 204 21); /* Yellow highlight */
+      background-color: rgb(234 179 8); /* yellow highlight */
       color: rgb(0 0 0);
     }
   }
 
   .dark {
-    /* Font settings (same in dark mode) */
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    /* Dark mode colors */
-    --aw-color-primary: rgb(202, 165, 14);   /* Yellow */
-    --aw-color-secondary: rgb(16 185 129); /* Green */
-    --aw-color-accent: rgb(37 99 235);     /* Blue */
+    /* 🌿 Primary: Green */
+    --aw-color-primary: rgb(34 197 94);
+    
+    /* 🌞 Secondary: Yellow */
+    --aw-color-secondary: rgb(234 179 8);
+    
+    /* 🌊 Accent: Blue */
+    --aw-color-accent: rgb(59 130 246);
 
-    --aw-color-text-heading: rgb(243 244 246); /* Gray-100 */
-    --aw-color-text-default: rgb(229 236 246); /* Light gray */
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-
-    --aw-color-bg-page: rgb(3 6 32); /* Dark navy */
+    /* 🌒 Text & Background (Dark Mode) */
+    --aw-color-text-heading: rgb(240 253 244); /* Tailwind emerald-50 */
+    --aw-color-text-default: rgb(226 232 240); /* Tailwind slate-200 */
+    --aw-color-text-muted: rgb(226 232 240 / 66%);
+    --aw-color-bg-page: rgb(2 6 23); /* Tailwind slate-950 */
 
     ::selection {
-      background-color: rgb(202, 165, 14); /* Yellow highlight */
-      color: rgb(0 0 0);
+      background-color: rgb(34 197 94); /* green highlight */
+      color: snow;
     }
   }
 </style>
