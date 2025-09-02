@@ -40,7 +40,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
                 autocomplete={autocomplete}
                 placeholder={placeholder}
                 class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
-                required <!-- ✅ BEST PRACTICE: Make fields required -->
+                required 
               />
             </div>
           )
@@ -59,7 +59,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
           rows={textarea.rows ? textarea.rows : 4}
           placeholder={textarea.placeholder}
           class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
-          required <!-- ✅ BEST PRACTICE: Make textarea required -->
+          required 
         />
       </div>
     )
@@ -74,7 +74,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
             name="disclaimer"
             type="checkbox"
             class="cursor-pointer h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-            required <!-- ✅ BEST PRACTICE: Make disclaimer required -->
+            required 
           />
         </div>
         <div class="ml-3">
