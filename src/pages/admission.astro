@@ -1,0 +1,132 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro'; // UPDATED: Using Features instead of Content
+import Steps from '~/components/widgets/Steps.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+// ADDED: Importing the hero background image
+import heroBgImage from '~/assets/images/Tech-For_Hero.jpg';
+
+const metadata = {
+  title: 'Admissions & Enrollment',
+  description: 'Begin your journey to becoming a certified EV technician with Akiya Power Tech. Learn about our programs and how to enroll.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero image={{ src: heroBgImage, alt: 'Akiya Power Tech workshop' }}>
+    <Fragment slot="title">
+      Admissions & Enrollment
+    </Fragment>
+    <Fragment slot="subtitle">
+      Start your career as a certified Electric Vehicle technician in Addis Ababa.
+    </Fragment>
+  </Hero>
+
+  <!-- FIXED: Replaced the large paragraph with a Features component for readability -->
+  <Features
+    id="program-overview"
+    tagline="Our Training Philosophy"
+    title="Become a Leader in the Future of Transportation"
+    items={[
+      {
+        title: 'Program Objective',
+        description:
+          'Our certification program is designed to equip trainees with the essential skills and knowledge required to maintain and service electric vehicles (EVs) in the fast-growing EV industry, meeting the rising demand for skilled professionals.',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'Hands-On Curriculum',
+        description:
+          'The training focuses on both theoretical and practical aspects of EV maintenance. From understanding core components to mastering diagnostic tools, our program integrates safety to ensure you can confidently work on modern electric vehicles.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Career Outcomes',
+        description:
+          'Upon completion, you will be equipped with the competencies necessary to meet industry standards and will be prepared for certification in EV maintenance, making you a valuable asset in the evolving automotive industry.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'State-of-the-Art Facilities',
+        description:
+          'Train in our modern workshop located in Addis Ababa, featuring the latest EV models and diagnostic equipment to provide a realistic learning environment.',
+        icon: 'tabler:building-factory',
+      }
+    ]}
+  />
+
+  <!-- Specialized EV Training Programs -->
+  <Features2
+    title="Choose Your Training Path"
+    subtitle="We offer specialized EV training programs designed to fit your needs and schedule."
+    items={[
+      {
+        title: 'Two-Month Comprehensive Program',
+        description: 'An in-depth program covering all aspects of Electric Vehicle (EV) Maintenance and Servicing. Ideal for those seeking a complete and thorough understanding of EV technology.',
+        icon: 'tabler:calendar-month',
+      },
+      {
+        title: 'Intensive 15-Day Program',
+        description: 'A focused, fast-tracked training on Electric Vehicle (EV) Maintenance and Servicing. Perfect for professionals looking to quickly upgrade their skills.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Customized Training',
+        description: 'We can also create customized training programs to meet the specific needs of your organization or team. Contact us to learn more.',
+        icon: 'tabler:school',
+      },
+      
+    ]}
+  />
+
+  <!-- Enrollment Process -->
+  <Steps
+    title="Your Path to Enrollment"
+    subtitle="Follow these simple steps to begin your journey with Akiya Power Tech."
+    items={[
+      {
+        title: 'Step 1: Choose Your Program',
+        description: 'Review the comprehensive and intensive training programs above and decide which path is the right fit for your career goals.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Step 2: Contact Our Admissions Team',
+        description: 'Reach out to us via our contact form or by phone. Our team is ready to answer your questions and provide any additional information you need.',
+        icon: 'tabler:phone-call',
+      },
+      {
+        title: 'Step 3: Complete Your Enrollment',
+        description: 'Our admissions team will guide you through the final registration and payment process to secure your spot in the upcoming session.',
+        icon: 'tabler:file-check',
+      },
+      {
+        title: 'Step 4: Begin Your Training!',
+        description: 'Join our expert instructors and fellow trainees at our state-of-the-art facility in Addis Ababa and start your journey to becoming an EV expert.',
+        icon: 'tabler:player-play',
+      },
+    ]}
+  />
+
+  <!-- Call to Action -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact Admissions',
+        href: '/contact',
+        icon: 'tabler:mail-forward',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Power Up Your Career?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Take the first step towards a successful career in the EV industry. <br class="hidden md:inline" />Contact our admissions team today to get started.
+    </Fragment>
+  </CallToAction>
+</Layout>

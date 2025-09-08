@@ -1,180 +1,259 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+
 import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialSlider from '~/components/TestimonialSlider.astro';
-import heroImage from '~/assets/images/for-hero.jpg';
-import trainingImage from '~/assets/images/for-features.jpg';
-import Testimonials from '~/components/widgets/Testimonials.astro';
-// Removed invalid Fragment import
+import heroBgImage from '~/assets/images/EV-Hero.jpg';
 
 const metadata = {
-  title: 'Akiya Power Tech - EV Technician Training Center',
+  title: 'Akiya Power Tech | EV Training and Service Center',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget - Original AstroWind Structure -->
+ <!-- Hero Widget ******************* -->
   <Hero
+    image={{ src: heroBgImage, alt: 'Akiya Power Tech workshop background' }}
     actions={[
       {
         variant: 'primary',
-        text: 'View Programs',
-        href: '/about',
-        icon: 'tabler:certificate',
+        text: 'Explore Courses',
+        href: '/#all-courses', // Links to courses in footer
+        icon: 'tabler:school',
       },
-      { text: 'Learn more', href: '#features' },
+      { 
+        variant: 'secondary', 
+        text: 'Book a Service', 
+        href: 'https://your-booking-app-url.com', // Links to booking app
+      },
     ]}
-    image={{ src: heroImage, alt: 'EV Technician Training' }}
   >
-    <span slot="title">
-      Become a Certified <span class="text-accent dark:text-white">EV Technician</span>
-    </span>
+    <Fragment slot="title">
+      Akiya Power Tech training and service center
+    </Fragment>
 
-    <span slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">Akiya Power Tech</span> offers professional training in electric vehicle maintenance and battery technology.</span>
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">EV Technician Certification</span>
-      Comprehensive hands-on training for the automotive industry's fastest-growing sector.
-    </span>
+    <Fragment slot="subtitle">
+      The leading center for hands-on EV training and professional repair services in Addis Ababa.
+    </Fragment>
   </Hero>
 
-  <!-- Features Widget - Your Akiya Content -->
+  <!-- Note Widget ******************* -->
+  <Note title="Our Mission:" description="To empower technicians and consumers in Addis Ababa with the knowledge and skills to accelerate the transition to electric mobility." />
+
+  <!-- Features Widget *************** -->
   <Features
     id="features"
-    tagline="Our Programs"
-    title="Specialized EV Training Courses"
-    subtitle="Developed by industry experts to meet the growing demand for qualified EV technicians"
+    tagline="Why Choose Us"
+    title="What you get with Akiya Power Tech"
+    subtitle="We provide Ethiopia's most comprehensive and hands-on EV training and servicing, ensuring you are at the forefront of automotive technology."
     items={[
       {
-        title: 'EV Systems Maintenance',
-        description: 'Master diagnostics and repair of electric vehicle powertrains and components',
-        icon: 'tabler:car',
+        title: 'Expert-Led EV Training',
+        description: 'Our curriculum is designed and taught by industry veterans with years of experience in electric vehicle technology.',
+        icon: 'tabler:users',
       },
       {
-        title: 'Battery Technology',
-        description: 'In-depth training on lithium-ion battery systems and management',
-        icon: 'tabler:battery',
-      },
-      {
-        title: 'Charging Infrastructure',
-        description: 'Installation and maintenance of EV charging stations',
-        icon: 'tabler:plug',
-      },
-      {
-        title: 'High Voltage Safety',
-        description: 'Certification in working with high-voltage EV systems',
-        icon: 'tabler:alert-triangle',
-      },
-      {
-        title: 'Diagnostic Techniques',
-        description: 'Advanced troubleshooting for electric vehicles',
+        title: 'Professional EV Service',
+        description: 'Our state-of-the-art workshop provides real-world experience in diagnosing and fixing all makes of EVs.',
         icon: 'tabler:tool',
       },
       {
-        title: 'Industry Certification',
-        description: 'Prepare for recognized EV technician certifications',
+        title: 'Industry-Recognized Certification',
+        description: 'Graduate with a certification that is respected and recognized by leading EV manufacturers and service centers.',
         icon: 'tabler:certificate',
+      },
+      {
+        title: 'State-of-the-Art Diagnostic Tools',
+        description: 'We utilize the latest in diagnostic equipment to accurately identify and resolve any issue with your electric vehicle.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Comprehensive Curriculum',
+        description: "From battery technology to ADAS, our courses cover every aspect of modern EVs.",
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Dedicated Career Support',
+        description: 'We are committed to your success and helping you launch or advance your career in the EV industry.',
+        icon: 'tabler:briefcase',
       },
     ]}
   />
 
-  <!-- Content Widget - Your Akiya Content -->
+  <!-- Content Widget for TRAINING **************** -->
   <Content
     isReversed
-    tagline="Why Choose Us"
-    title="Superior EV Technician Training"
+    tagline="Our Training Programs"
+    title="Built for the Future of Automotive"
     items={[
       {
-        title: 'Industry-Experienced Instructors',
-        description: 'Learn from certified EV specialists with dealership experience',
+        title: 'Beginner to Advanced Courses',
+        description: 'No matter your skill level, we have a training path designed to make you a proficient EV technician.',
       },
       {
-        title: 'Hands-On Training',
-        description: 'Practical experience with current EV models and tools',
+        title: 'Focus on Practical Skills',
+        description: 'Our training emphasizes hands-on learning to ensure you are prepared for real-world challenges.',
       },
       {
-        title: 'Job Placement Assistance',
-        description: 'Connections with local dealerships and service centers',
+        title: 'Safety First Approach',
+        description: 'Learn the proper safety protocols for handling high-voltage systems, ensuring a safe working environment.',
       },
     ]}
     image={{
-      src: trainingImage,
-      alt: 'EV Training Session',
-      quality: 90,
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Akiya Power Tech Training Session',
     }}
   >
-    <span slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">The Future is Electric</h3>
-      Gain the skills employers are looking for in the rapidly growing EV sector
-    </span>
-
-    <span slot="bg">
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Empowering the Next Generation of Technicians</h3>
+      Gain a competitive edge with our industry-leading training programs.
+    </Fragment>
+    <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </span>
+    </Fragment>
   </Content>
 
-  <!-- Stats Widget - Your Akiya Content -->
-  <Stats
-    stats={[
-      { title: 'Graduates', amount: '200+' },
-      { title: 'Job Placement', amount: '90%' },
-      { title: 'Certified Trainers', amount: '15' },
-      { title: 'Industry Partners', amount: '25+' },
+  <!-- Content Widget for SERVICES **************** -->
+  <Content
+    tagline="EV Service Center"
+    title="Expert Care for Your Electric Vehicle"
+    items={[
+      {
+        title: 'Comprehensive Diagnostics',
+        description: `We use the latest tools and software to accurately diagnose and repair your EV, saving you time and money.`,
+      },
+      {
+        title: 'Battery Health Services',
+        description: 'Our experts can assess the health of your EV battery and provide solutions to optimize its performance and longevity.',
+      },
+      {
+        title: 'Routine Maintenance and Repairs',
+        description: "From software updates to brake service, we provide a full range of maintenance to keep your EV running smoothly.",
+      },
     ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Akiya Power Tech Service Center',
+    }}
+  >
+    <Fragment slot="content">Your trusted partner for EV service and repair in Addis Ababa.</Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Steps Widget ****************** -->
+  <Steps
+    title="Start Your EV Technician Career in 3 Simple Steps"
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Explore Our Courses</span>',
+        description: "Take a look at our range of training programs and find the one that's right for you.",
+        icon: 'tabler:list-search',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Enroll and Learn</span>',
+        description: "Sign up for your chosen course and begin your journey to becoming an EV expert with our hands-on training.",
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Get Certified</span>',
+        description: 'Receive an industry-recognized certification that will open doors to new career opportunities in the EV industry.',
+        icon: 'tabler:certificate',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Steps image',
+    }}
   />
-<section id="testimonials" class="bg-page py-12 px-6 text-center">
-  <h2 class="text-3xl font-bold text-primary mb-4">What Our Trainees Say</h2>
-  <p class="text-muted text-lg mb-6">
-    Here are a few testimonials from graduates of Akiya Power Tech Training Center. Their success stories fuel our mission.
-  </p>
-  <TestimonialSlider />
-</section>
 
-
-  <!-- FAQs Widget - Your Akiya Content -->
+  <!-- FAQs Widget ******************* -->
   <FAQs
     title="Frequently Asked Questions"
-    subtitle="Everything you need to know about our EV technician training programs"
+    subtitle="Find answers to common questions about our EV training and service offerings."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'What are the prerequisites?',
-        description: 'Basic automotive knowledge is helpful but not required. We provide foundational training for all students.',
+        title: 'Why should I choose a career as an EV technician?',
+        description: "The demand for skilled EV technicians is rapidly growing. A career in this field offers job security and the opportunity to work with cutting-edge technology.",
       },
       {
-        title: 'How long are the programs?',
-        description: 'Programs range from 2-week intensive training to 2-month comprehensive certifications.',
+        title: 'How do I book a service appointment for my EV?',
+        description: "You can book an appointment by clicking the 'Book a Service' button, which will take you to our online booking application. You can also call us directly.",
       },
       {
-        title: 'How do I apply or enroll?',
-        description: 'Visit the Contact page to reach us or use the “Enroll” button in the header for registration and intake schedules.',
+        title: 'What do I need to enroll in your courses?',
+        description: 'Our courses are designed for individuals with a passion for automotive technology. Please contact us for specific course prerequisites.',
+      },
+      {
+        title: "What types of EVs do you service?",
+        description: "Our certified technicians have the expertise to service a wide range of electric vehicle makes and models available in Ethiopia.",
       },
     ]}
   />
 
-  <!-- CallToAction Widget - Your Akiya Content -->
+  <!-- Testimonials Widget *********** -->
+  <!-- FIXED: Removed the gray background container -->
+  <section id="testimonials" class="py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 text-center">
+        <p class="text-base font-semibold uppercase tracking-wider text-accent dark:text-blue-400">
+          Testimonials
+        </p>
+        <h2 class="font-heading mb-4 font-bold tracking-tight text-gray-900 dark:text-white text-3xl sm:text-4xl">
+          What Our Students & Partners Say
+        </h2>
+        <p class="mt-4 text-xl text-gray-600 dark:text-slate-400">
+          Hear from technicians who have advanced their careers with Akiya Power Tech.
+        </p>
+      </div>
+      <TestimonialSlider />
+    </div>
+  </section>
+
+  <!-- Stats Widget ****************** -->
+  <Stats
+    stats={[
+      { title: 'Students Trained', amount: '1,200+' },
+      { title: 'Vehicles Serviced', amount: '5,000+' },
+      { title: 'Industry Partners', amount: '50+' },
+      { title: 'Certified Technicians', amount: '100+' },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
   <CallToAction
     actions={[
       {
         variant: 'primary',
         text: 'Enroll Now',
         href: '/contact',
-        icon: 'tabler:certificate',
+        icon: 'tabler:school',
       },
+      // ADDED: A second button for the service center
+      {
+        variant: 'secondary',
+        text: 'Book a Service',
+        href: 'https://your-booking-app-url.com', // Links to booking app
+        icon: 'tabler:calendar-event',
+      }
     ]}
   >
-    <span slot="title">
-      Ready to Launch Your <span class="sm:whitespace-nowrap">EV Career?</span>
-    </span>
-    <span slot="subtitle">
-      Limited seats available for our next training session. <br class="hidden md:inline" />Apply today to secure your spot.
-    </span>
+    <Fragment slot="title">
+      Ready to Power Up Your Future?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Join the electric revolution with Akiya Power Tech. <br class="hidden md:inline" />Enroll in our courses or book an expert service for your EV today!
+    </Fragment>
   </CallToAction>
 </Layout>
