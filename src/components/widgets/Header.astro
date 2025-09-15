@@ -64,6 +64,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                         class:list={[
                           'first:rounded-t last:rounded-b md:hover:bg-gray-100 py-2 px-5 block whitespace-no-wrap',
                           // THE FIX FOR DROPDOWN TEXT
+                          'dark:md:hover:bg-slate-700', // This is the new, lighter background for dark mode hover
                           'text-slate-900 dark:text-slate-200', // Sets the base text color to be dark
                           'hover:text-primary dark:hover:text-white', // Sets the hover color
                           { 'aw-link-active': href2 === currentPath },
@@ -103,7 +104,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <style is:global>
   #header.scrolled #header-background {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: none;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
@@ -112,7 +113,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   }
 
   .dark #header.scrolled #header-background {
-    background-color: rgba(15, 23, 42, 0.95) !important;
+    background-color: rgba(15, 23, 42, 0.98) !important;
   }
   .dark #header.scrolled #header-content {
     color: #ffffff !important;
