@@ -1,143 +1,188 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
 
-// Import the background image file
+// Your image imports are all correct.
 import evTrainingClassImage from '~/assets/images/for-trainers.jpg';
+import T1 from '~/assets/images/T1.jpg';
+import T2 from '~/assets/images/T2.jpg';
+import T3 from '~/assets/images/T3.jpg';
+import T4 from '~/assets/images/T4.jpg';
+import T5 from '~/assets/images/T5.jpg';
+import T6 from '~/assets/images/T6.jpg';
 
 const metadata = {
-  title: 'Meet Our EV Trainers',
+  title: 'Meet Our Expert Trainers | Akiya Power Tech',
+  description: 'Meet the expert instructors at Akiya Power Tech. Our certified trainers bring years of real-world EV industry experience to the classroom.',
 };
+
+// Your full trainer data, including the 'fullBio' for the modals.
+const trainers = [
+  { name: 'Yared Habtemariam', title: 'Automotive Engineer', bio: 'A passionate instructor focusing on the foundational skills of EV maintenance and core vehicle systems.', image: T5, fullBio: 'Yared holds a Master\'s degree in Automotive Engineering and has worked with leading automotive manufacturers before joining Akiya Power Tech. He has contributed to several research papers on EV conversion systems and specializes in making complex technical concepts accessible to students of all backgrounds.' },
+  { name: 'Andebet Gedamu', title: 'PhD, Chemical Engineering', bio: 'Specializes in advanced battery technology and the materials science that powers modern electric vehicles.', image: T2, fullBio: 'Dr. Gedamu brings over 12 years of research experience in energy storage systems. After completing his PhD at Addis Ababa University, he conducted postdoctoral research at the German Aerospace Center, focusing on next-generation battery technologies. His practical approach to teaching helps students understand both the theoretical and applied aspects of EV power systems.' },
+  { name: 'Ermiyas Getnet', title: 'Electronics Technician', bio: 'An expert in the intricate electronic components, control units, and complex circuits within electric vehicles.', image: T3, fullBio: 'Ermiyas has been working with automotive electronics for over 15 years, starting with traditional vehicles before specializing in electric vehicles. He holds multiple certifications in automotive electronics and has developed several training programs now used across Ethiopia. His hands-on teaching style ensures students gain practical skills they can immediately apply in the workplace.' },
+  { name: 'Marsilas Darsema', title: 'MSc, Electrical Engineering', bio: 'An expert in the high-voltage systems and power electronics that are fundamental to modern EVs.', image: T4, fullBio: 'With a Master\'s degree focused on power systems and extensive industry experience, Marsilas brings both academic rigor and practical knowledge to the classroom. He has worked on grid integration projects for EV charging stations and developed safety protocols now adopted by several Ethiopian EV manufacturers.' },
+  { name: 'Milk’ias Birhanu', title: 'PhD, Electrical Engineering', bio: 'Brings deep expertise in complex electrical diagnostics, system integration, and advanced troubleshooting.', image: T5, fullBio: 'Dr. Birhanu is a recognized expert in EV diagnostics with patents in diagnostic equipment specifically designed for African conditions. After completing his doctorate in Germany, he returned to Ethiopia to help build the local EV ecosystem. His research focuses on adapting EV technology for emerging markets.' },
+  { name: 'Samson Birhanu', title: 'BSc, Manufacturing Technologist', bio: 'Guides students through the production processes and quality control standards of EV components.', image: T6, fullBio: 'Samson brings valuable industry perspective from his years working in manufacturing plants. He has helped set up quality control systems for three different EV startups in Ethiopia and understands the practical challenges of local production. His courses focus on implementing international standards in local contexts.' },
+  { name: 'Semahegn Shitaw', title: 'MSc, Electrical Engineering', bio: 'A specialist in EV charging infrastructure, V2G technology, and smart energy management systems.', image: T1, fullBio: 'Semahegn is a leading voice in EV infrastructure development in East Africa. He has consulted on numerous charging station projects across the region and developed the first vehicle-to-grid implementation plan for Ethiopia. His forward-looking courses prepare students for the evolving landscape of EV technology.' },
+  { name: 'Sintayehu Alemmnew', title: 'MSc, Electrical Engineering', bio: 'Provides hands-on training in motor control systems and the intricacies of EV powertrain technology.', image: T3, fullBio: 'Sintayehu specializes in electric motor design and control systems. After working with a major European EV manufacturer, he returned to Ethiopia to contribute to local capacity building. He has developed innovative teaching methods that use locally available materials to demonstrate complex powertrain concepts.' },
+  { name: 'Temesgen Taye', title: 'MSc, Electrical Engineering', bio: 'Focuses on advanced diagnostics, using cutting-edge tools to troubleshoot complex electrical faults in EVs.', image: T2, fullBio: 'Temesgen is known for his ability to diagnose the most challenging EV electrical issues. He has trained technicians across East Africa and developed diagnostic protocols specifically for conditions in the region. His practical approach emphasizes problem-solving skills and adaptive thinking.' },
+];
 ---
 
 <Layout metadata={metadata}>
-  <Hero
-    title="Powering the Future of EV Education"
-    tagline="Expertise. Innovation. Real-World Impact."
-    image={{
-      src: evTrainingClassImage,
-      alt: 'EV training class in session',
-    }}
-  >
-    <Fragment slot="subtitle">
-      Behind every successful EV professional is a great mentor. Our instructors combine field expertise with a passion for teaching—guiding learners across electric vehicle systems, diagnostics, and infrastructure.
-    </Fragment>
-  </Hero>
+ <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={evTrainingClassImage}
+          alt="Akiya Power Tech trainer instructing a class"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <div class="bg-blue-50 dark:bg-transparent">
-    <Features3
-      title="Our Expert Faculty"
-      subtitle="Meet the highly qualified team of professionals who will guide you to success."
-      columns={3}
-      defaultIcon="tabler:user-star"
-      items={[
-        {
-          title: 'Yared Habtemariam',
-          description:
-            'An Automotive Engineer with a passion for teaching foundational skills in EV maintenance and vehicle systems.',
-          icon: 'tabler:car',
-          image: {
-            src: 'https://placehold.co/400x400?text=Yared+H.',
-            alt: 'Photo of Yared Habtemariam',
-          },
-        },
-        {
-          title: 'Andebet Gedamu',
-          description:
-            'Holding a PhD in Chemical Engineering, Andebet specializes in advanced battery technology and materials science for EVs.',
-          icon: 'tabler:flask',
-          image: {
-            src: 'https://placehold.co/400x400?text=Andebet+G.',
-            alt: 'Photo of Andebet Gedamu',
-          },
-        },
-        {
-          title: 'Ermiyas Getnet',
-          description:
-            'An expert Electronics Technician, Ermiyas focuses on the intricate electronic components and control systems within electric vehicles.',
-          icon: 'tabler:cpu',
-          image: {
-            src: 'https://placehold.co/400x400?text=Ermiyas+G.',
-            alt: 'Photo of Ermiyas Getnet',
-          },
-        },
-        {
-          title: 'Marsilas Darsema',
-          description:
-            'With an MSc in Electrical Engineering, Marsilas is an expert in the high-voltage systems and power electronics of modern EVs.',
-          icon: 'tabler:bolt',
-          image: {
-            src: 'https://placehold.co/400x400?text=Marsilas+D.',
-            alt: 'Photo of Marsilas Darsema',
-          },
-        },
-        {
-          title: 'Milk’ias Birhanu',
-          description:
-            'A PhD in Electrical Engineering, Milk’ias brings deep expertise in complex electrical diagnostics and system integration.',
-          icon: 'tabler:settings',
-          image: {
-            src: 'https://placehold.co/400x400?text=Milkias+B.',
-            alt: 'Photo of Milk’ias Birhanu',
-          },
-        },
-        {
-          title: 'Samson Birhanu',
-          description:
-            'A Manufacturing Technologist (BSc) who guides students through the production processes and quality control of EV components.',
-          icon: 'tabler:tool',
-          image: {
-            src: 'https://placehold.co/400x400?text=Samson+B.',
-            alt: 'Photo of Samson Birhanu',
-          },
-        },
-        {
-          title: 'Semalegn Shifaw',
-          description:
-            'An Electrical Engineer (MSc), Semalegn is a specialist in EV charging infrastructure and energy management systems.',
-          icon: 'tabler:plug',
-          image: {
-            src: 'https://placehold.co/400x400?text=Semalegn+S.',
-            alt: 'Photo of Semalegn Shifaw',
-          },
-        },
-        {
-          title: 'Sintayehu Alemnmew',
-          description:
-            'With an MSc in Electrical Engineering, Sintayehu provides hands-on training in motor control systems and EV powertrain technology.',
-          icon: 'tabler:engine',
-          image: {
-            src: 'https://placehold.co/400x400?text=Sintayehu+A.',
-            alt: 'Photo of Sintayehu Alemnmew',
-          },
-        },
-        {
-          title: 'Temesgen Taye',
-          description:
-            'An Electrical Engineer (MSc) focusing on advanced diagnostics and troubleshooting of complex electrical faults in EVs.',
-          icon: 'tabler:alert-triangle',
-          image: {
-            src: 'https://placehold.co/400x400?text=Temesgen+T.',
-            alt: 'Photo of Temesgen Taye',
-          },
-        },
-      ]}
-    />
-  </div>
-
-  <section class="bg-blue-50 dark:bg-transparent py-10 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-4">Want to Learn From the Best?</h2>
-      <p class="text-gray-700 mb-6">
-        Whether you're just starting your EV journey or ready to specialize in diagnostics, our instructors are here to guide you every step of the way.
-      </p>
-      <a
-        href="/contact"
-        class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition"
-      >
-        Get in Touch
-      </a>
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Learn from <span class="text-blue-400">Industry Leaders</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-2xl">
+          Our instructors combine extensive real-world experience with a passion for teaching, guiding the next generation of EV experts in Ethiopia.
+        </p>
+      </div>
     </div>
   </section>
+
+  <!-- 
+    NEW Trainers Section:
+    - Uses the elegant card design from the reference image.
+    - Includes a "View Full Profile" button to trigger the modal.
+  -->
+  <section class="bg-slate-50 dark:bg-slate-900 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 sm:p-12">
+       <div class="mx-auto max-w-2xl text-center mb-16">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Meet Our Instructors</h2>
+        <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+          We are proud to have a team of dedicated professionals who bring both deep expertise and a commitment to excellence in education.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          trainers.map((trainer) => (
+            <div class="flex flex-col text-center p-6 border border-gray-200/80 dark:border-slate-700/50 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="mb-6">
+                <Image src={trainer.image} alt={`Portrait of ${trainer.name}`} class="w-32 h-32 rounded-full mx-auto object-cover" width={128} height={128} format="webp" quality={80}/>
+              </div>
+
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">{trainer.name}</h3>
+              <p class="mt-1 text-sm font-medium text-green-500 dark:text-yellow-400">{trainer.title}</p>
+              <p class="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">{trainer.bio}</p>
+              
+              <!-- NEW: Button to open the modal -->
+              <div class="mt-6">
+                <button class="view-profile-btn text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline" data-trainer={trainer.name.replace(/\s+/g, '-').toLowerCase()}>
+                  View Full Profile
+                </button>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 
+    MODALS SECTION:
+    - This generates a hidden modal for each trainer.
+    - The content is populated from the 'fullBio' property.
+  -->
+  {trainers.map(trainer => (
+    <div 
+      id={`modal-${trainer.name.replace(/\s+/g, '-').toLowerCase()}`} 
+      class="trainer-modal fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <div class="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300">
+        <div class="relative">
+          <button class="modal-close absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-white/80 dark:bg-slate-700/80 rounded-full p-1 z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          <div class="p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{trainer.name}</h3>
+            <p class="text-yellow-500 dark:text-green-400 text-lg mb-4">{trainer.title}</p>
+            <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+              <p>{trainer.fullBio}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- CallToAction remains the same -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'View All Courses', href: '#page-footer', icon: 'tabler:school' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Learn from the Best?</Fragment>
+    <Fragment slot="subtitle">Our expert instructors are ready to guide you on your journey to becoming a certified EV technician. Explore our courses today.</Fragment>
+  </CallToAction>
+
+  <!-- SCRIPT FOR MODALS -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewProfileButtons = document.querySelectorAll('.view-profile-btn');
+      const modals = document.querySelectorAll('.trainer-modal');
+      const closeButtons = document.querySelectorAll('.modal-close');
+      
+      const openModal = (modal) => {
+        if (!modal) return;
+        const dialog = modal.querySelector('div');
+        modal.classList.remove('pointer-events-none');
+        modal.classList.add('opacity-100');
+        dialog.classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = (modal) => {
+        if (!modal) return;
+        const dialog = modal.querySelector('div');
+        modal.classList.add('pointer-events-none');
+        modal.classList.remove('opacity-100');
+        dialog.classList.add('scale-95');
+        document.body.style.overflow = 'auto';
+      };
+
+      viewProfileButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const trainerId = button.getAttribute('data-trainer');
+          const modal = document.getElementById(`modal-${trainerId}`);
+          openModal(modal);
+        });
+      });
+      
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const modal = button.closest('.trainer-modal');
+          closeModal(modal);
+        });
+      });
+      
+      modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal(modal);
+          }
+        });
+      });
+    });
+  </script>
 </Layout>

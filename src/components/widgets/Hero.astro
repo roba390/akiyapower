@@ -1,40 +1,61 @@
 ---
-import Image from '~/components/common/Image.astro';
+import { Image } from 'astro:assets';
 import Button from '~/components/ui/Button.astro';
+
+export type VideoSource = {
+  src: string;
+  type: 'video/mp4' | 'video/webm';
+};
 
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
   tagline,
-  content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
-  image = await Astro.slots.render('image'),
   id,
-  bg = await Astro.slots.render('bg'),
+  image,
+  video,
+  poster,
 } = Astro.props;
 ---
 
 <section class="relative not-prose" {...id ? { id } : {}}>
-  <!-- Background Image Container -->
   <div class="relative h-screen overflow-hidden">
-    {image && (
-      typeof image === 'string' ? (
-        <Fragment set:html={image} />
-      ) : (
+    {video ? (
+  <video
+    class="absolute inset-0 w-full h-full object-cover z-10"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={typeof poster.src === 'string' ? poster.src : poster.src.src}
+  >
+    {Array.isArray(video) && video.map(source => (
+      <source src={source.src} type={source.type} />
+    ))}
+    Your browser does not support the video tag.
+  </video>
+    ) : (
+      image && (
         <Image
-          class="w-full h-full object-cover"
+          // 👇 ADDED: z-10 here as well for consistency
+          class="w-full h-full object-cover z-10"
           width={1920}
           height={1080}
+          loading="eager"
           {...image}
         />
       )
     )}
 
     <!-- Dark Overlay for better text readability -->
-    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    {/* 👇 ADDED: z-20 to place it above the video/image */}
+    <div class="absolute inset-0 bg-black bg-opacity-25 z-20"></div>
 
     <!-- Content aligned to the left -->
-    <div class="absolute inset-0 flex items-center">
+    {/* 👇 ADDED: z-30 to ensure it's on top of everything */}
+    <div class="absolute inset-0 flex items-center z-30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div class="max-w-2xl text-left">
           {tagline && (
@@ -43,9 +64,7 @@ const {
           {title && (
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" set:html={title} />
           )}
-          {subtitle && (
-            <p class="text-lg text-gray-200 mb-8" set:html={subtitle} />
-          )}
+          {subtitle && <Fragment set:html={subtitle} />}
           {actions && (
             <div class="flex flex-col sm:flex-row justify-start gap-4">
               {Array.isArray(actions) ? (
@@ -57,7 +76,6 @@ const {
               )}
             </div>
           )}
-          {content && <Fragment set:html={content} />}
         </div>
       </div>
     </div>

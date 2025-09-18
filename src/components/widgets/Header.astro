@@ -4,32 +4,46 @@ import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
+import { getHomePermalink, trimSlash } from '~/utils/permalinks';
 
-import { getHomePermalink } from '~/utils/permalinks';
-import { trimSlash } from '~/utils/permalinks';
-import type { CallToAction } from '~/types';
+// ===================================================================================
+// THE DEFINITIVE FIX:
+// 1. We DELETE the old, locally-defined 'Link' and 'MenuLink' interfaces.
+// 2. We IMPORT the correct, central HeaderData and Link types from `~/types.ts`.
+// ===================================================================================
+import type { HeaderData, Link } from '~/types';
 
-// Interfaces...
-interface Link { text?: string; href?: string; ariaLabel?: string; icon?: string; }
-interface MenuLink extends Link { links?: Array<MenuLink>; }
+// This Props interface now correctly extends the central HeaderData type.
+// This makes it aware of all the properties in your navigation.js file.
+export interface Props extends HeaderData {
+  id?: string;
+  isSticky?: boolean;
+  isDark?: boolean;
+  isFullWidth?: boolean;
+  showToggleTheme?: boolean;
+  showRssFeed?: boolean;
+  position?: string;
+}
 
-// Props...
-export interface Props { id?: string; links?: Array<MenuLink>; actions?: Array<CallToAction>; isSticky?: boolean; isDark?: boolean; isFullWidth?: boolean; showToggleTheme?: boolean; showRssFeed?: boolean; position?: string; }
+// Astro.props is now correctly typed according to our central blueprint.
+const {
+  id = 'header',
+  links = [],
+  actions = [],
+  isSticky = true,
+  isDark = false,
+  isFullWidth = false,
+  showToggleTheme = false,
+  showRssFeed = false,
+  position = 'center',
+} = Astro.props;
 
-const { id = 'header', links = [], actions = [], isSticky = true, isDark = false, isFullWidth = false, showToggleTheme = false, showRssFeed = false, position = 'center' } = Astro.props;
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
-<header
-  class:list={['fixed top-0 z-40 w-full transition-colors duration-300 ease-in-out']}
-  id={id}
->
+<header class:list={['fixed top-0 z-40 w-full transition-colors duration-300 ease-in-out']} id={id}>
   <!-- Background Div -->
-  <div
-    id="header-background"
-    class="absolute inset-0 bg-black/20  transition-all duration-300 ease-in-out"
-  >
-  </div>
+  <div id="header-background" class="absolute inset-0 bg-black/20 transition-all duration-300 ease-in-out"></div>
 
   <!-- Content Div -->
   <div
@@ -47,56 +61,79 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       <a class="flex items-center" href={getHomePermalink()}><Logo /></a>
       <div class="flex items-center md:hidden"><ToggleMenu /></div>
     </div>
-    
-    <nav class="items-center w-full md:w-auto hidden md:flex md:mx-5 overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center" aria-label="Main navigation">
-      <ul class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center">
-        { links.map(({ text, href, links: subLinks }) => (
-          <li class={subLinks?.length ? 'dropdown' : ''}>
-            {subLinks?.length ? (
-              <>
-                <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap">
-                  {text} <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
-                </button>
-                <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-                  {subLinks.map(({ text: text2, href: href2 }) => (
-                    <li>
-                      <a 
-                        class:list={[
-                          'first:rounded-t last:rounded-b md:hover:bg-gray-100 py-2 px-5 block whitespace-no-wrap',
-                          // THE FIX FOR DROPDOWN TEXT
-                          'dark:md:hover:bg-slate-700', // This is the new, lighter background for dark mode hover
-                          'text-slate-900 dark:text-slate-200', // Sets the base text color to be dark
-                          'hover:text-primary dark:hover:text-white', // Sets the hover color
-                          { 'aw-link-active': href2 === currentPath },
-                        ]} 
-                        href={href2}
-                      >
-                        {text2}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <a class:list={['hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap', { 'aw-link-active': href === currentPath }]} href={href}>{text}</a>
-            )}
-          </li>
-        ))}
+
+    <nav
+      class="items-center w-full md:w-auto hidden md:flex md:mx-5 overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+      aria-label="Main navigation"
+    >
+      <ul
+        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
+      >
+        {
+          links.map((link: Link) => (
+            <li class={link.links?.length ? 'dropdown' : ''}>
+              {link.links?.length ? (
+                <>
+                  <button
+                    type="button"
+                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                  >
+                    {link.text}
+                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
+                  </button>
+                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                    {link.links.map((subLink: Link) => (
+                      <li>
+                        <a
+                          class:list={[
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 py-2 px-5 block whitespace-no-wrap',
+                            'dark:md:hover:bg-slate-700', 'text-slate-900 dark:text-slate-200',
+                            'hover:text-primary dark:hover:text-white',
+                            { 'aw-link-active': subLink.href === currentPath },
+                          ]}
+                          {...{ ...subLink, text: undefined, links: undefined }}
+                        >
+                          {subLink.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <a
+                  class:list={[
+                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                    { 'aw-link-active': link.href === currentPath },
+                  ]}
+                  href={link.href}
+                  {...{ ...link, text: undefined, links: undefined }}
+                >
+                  {link.text}
+                </a>
+              )}
+            </li>
+          ))
+        }
       </ul>
     </nav>
 
-    <div class:list={[{ 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' }, 'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end']}>
+    <div
+      class:list={[
+        { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
+        'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
+      ]}
+    >
       <div class="items-center flex justify-between w-full md:w-auto">
-        <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
-        </div>
-        { actions?.length ? (
+        <div class="flex">{showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}</div>
+        {actions?.length ? (
           <span class="ml-4 rtl:ml-0 rtl:mr-4">
-            {actions.map((btnProps) => (
+            {actions.map((btnProps: Link) => (
               <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
             ))}
           </span>
-        ) : ''}
+        ) : (
+          ''
+        )}
       </div>
     </div>
   </div>
@@ -111,7 +148,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   #header.scrolled #header-content {
     color: #111827 !important;
   }
-
   .dark #header.scrolled #header-background {
     background-color: rgba(15, 23, 42, 0.98) !important;
   }
@@ -121,12 +157,9 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </style>
 
 <script is:inline>
-  // THE FIX FOR NAVIGATION
-  // This function sets up the scroll listener.
   function setupHeaderScrollListener() {
     const header = document.getElementById('header');
     if (!header) return;
-
     const scrollOffset = 10;
     const handleScroll = () => {
       if (window.scrollY > scrollOffset) {
@@ -136,9 +169,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       }
     };
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Run once to set the initial state
+    handleScroll();
   }
-
-  // Use 'astro:page-load' which fires on initial load AND after every page transition
   document.addEventListener('astro:page-load', setupHeaderScrollListener);
 </script>

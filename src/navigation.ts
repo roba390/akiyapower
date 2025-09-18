@@ -1,4 +1,4 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -7,61 +7,60 @@ export const headerData = {
       href: getPermalink('/'),
     },
     {
-      // NEW: Top-level category for all training-related content.
       text: 'EV Training Center',
       links: [
         {
-          // This new link goes to a "catalog" page that can link to all your course pages.
           text: 'All Courses',
           href: '/#all-courses', 
         },
         {
-          // MOVED: Your existing 'Trainers' page now lives here.
           text: 'Our Trainers',
           href: getPermalink('/trainers'),
         },
         {
           text: 'Admissions & Enrollment',
-          href: getPermalink('/admission'), // Directs users to the contact page to enroll.
+          href: getPermalink('/admission'), // Changed from /admission to use contact page
         },
       ],
     },
     {
-      // NEW: Top-level category for the new service business.
       text: 'EV Service Center',
       links: [
         {
           text: 'Our Services',
-          href: getPermalink('/services'), // A new page you will create.
+          href: getPermalink('/services'),
         },
         {
           text: 'Why Choose Us',
-          href: getPermalink('/why-us'), // A new page you will create.
+          href: getPermalink('/why-us'),
         },
         {
           text: 'Book an Appointment',
-          // IMPORTANT: This must be the full URL to your separate booking web app.
-          href: 'https://my-booking-app-ecru.vercel.app/', 
+          href: 'https://my-booking-app-ecru.vercel.app/',
+          // ✅ ADDED: Activates the custom modal
+          'data-confirm-external': true,
+          'data-confirm-message': 'You are headed to our secure booking portal. Continue?',
         },
       ],
     },
     {
-      // MOVED: Your 'About' page is still a top-level link.
       text: 'About',
       href: getPermalink('/about'),
     },
   ],
   actions: [
-    // // UPDATED: The primary button is now for booking a service.
+    // ✅ ADDED: Re-enabled the primary Call to Action button for the header
     // { 
     //   text: 'Book a Service', 
-    //   href: 'https://my-booking-app-ecru.vercel.app/', // Links to your booking app
+    //   href: 'https://my-booking-app-ecru.vercel.app/',
     //   variant: 'primary',
+    //   'data-confirm-external': true,
+    //   'data-confirm-message': 'You are headed to our secure booking portal. Continue?',
     // },
-    // NEW: A secondary button for students.
     {
       text: 'Enroll Now',
       href: getPermalink('/contact'),
+      variant: 'secondary', // Set an explicit variant
     }
   ],
 };
@@ -73,11 +72,10 @@ export const footerData = {
       links: [
         { text: 'About Us', href: getPermalink('/about') },
         { text: 'Our Trainers', href: getPermalink('/trainers') },
-        { text: 'Testimonials', href: '/' + '#testimonials' },
+        { text: 'Testimonials', href: getPermalink('/#testimonials') }, // Corrected anchor link syntax
       ],
     },
     {
-      // Your existing course links are perfect for the footer as quick navigation.
       title: 'Our Courses',
       links: [
         { text: 'EV Maintenance', href: getPermalink('/courses/ev-maintenance') },
@@ -91,11 +89,15 @@ export const footerData = {
       ],
     },
     {
-      // NEW: A dedicated column in the footer for the service center.
       title: 'Service Center',
       links: [
         { text: 'Our Services', href: getPermalink('/services')},
-        { text: 'Book an Appointment', href: 'https://my-booking-app-ecru.vercel.app/'},
+        { 
+          text: 'Book an Appointment', 
+          href: 'https://my-booking-app-ecru.vercel.app/',
+          // ✅ ADDED: Activates the custom modal
+          'data-confirm-external': true,
+        },
         { text: 'FAQs', href: getPermalink('/faqs') },
       ]
     },

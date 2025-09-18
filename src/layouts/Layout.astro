@@ -11,6 +11,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import ConfirmationModal from '~/components/ui/confirmation.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -44,5 +45,121 @@ const { language, textDirection } = I18N;
     <slot />
 
     <BasicScripts />
+    <ConfirmationModal />
+
+    {/* ======================================================================= */}
+    {/* SCRIPT FOR EXTERNAL LINK CONFIRMATION MODAL */}
+    {/* ======================================================================= */}
+    <script is:inline>
+      // Get references to all the modal elements
+      const modalBackdrop = document.getElementById('confirmation-modal-backdrop');
+      const modalDialog = document.getElementById('confirmation-modal-dialog');
+      const modalMessage = document.getElementById('confirmation-modal-message');
+      const confirmBtn = document.getElementById('confirmation-modal-confirm-btn');
+      const cancelBtn = document.getElementById('confirmation-modal-cancel-btn');
+
+      function showConfirmationModal(message) {
+        modalMessage.textContent = message;
+        modalBackdrop.classList.remove('hidden');
+        modalBackdrop.classList.add('flex');
+        setTimeout(() => {
+          modalBackdrop.classList.remove('opacity-0');
+          modalDialog.classList.remove('scale-95');
+        }, 10);
+        return new Promise((resolve, reject) => {
+          const cleanup = () => {
+            modalBackdrop.classList.add('opacity-0');
+            modalDialog.classList.add('scale-95');
+            setTimeout(() => {
+              modalBackdrop.classList.add('hidden');
+              modalBackdrop.classList.remove('flex');
+            }, 300);
+            confirmBtn.removeEventListener('click', onConfirm);
+            cancelBtn.removeEventListener('click', onCancel);
+          };
+          const onConfirm = () => {
+            cleanup();
+            resolve();
+          };
+          const onCancel = () => {
+            cleanup();
+            reject();
+          };
+          confirmBtn.addEventListener('click', onConfirm);
+          cancelBtn.addEventListener('click', onCancel);
+        });
+      }
+
+      function setupExternalLinkConfirmations() {
+        const linksToConfirm = document.querySelectorAll('a[data-confirm-external]');
+        linksToConfirm.forEach((link) => {
+          if (link.dataset.listenerAttached) return;
+          link.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const message = link.dataset.confirmMessage || 'You are being directed to an external page. Proceed?';
+            const destination = link.getAttribute('href');
+            try {
+              await showConfirmationModal(message);
+              window.open(destination, '_blank', 'noopener,noreferrer');
+            } catch (error) {
+              console.log('Navigation cancelled by user.');
+            }
+          });
+          link.dataset.listenerAttached = 'true';
+        });
+      }
+      document.addEventListener('DOMContentLoaded', setupExternalLinkConfirmations);
+      document.addEventListener('astro:after-swap', setupExternalLinkConfirmations);
+    </script>
+
+    {/* ======================================================================= */}
+    {/* NEW: STYLES FOR MOMENTARY HIGHLIGHT ON SCROLL */}
+    {/* ======================================================================= */}
+    <style is:global>
+      @keyframes highlight-fade {
+        0% {
+          background-color: rgba(208, 222, 48, 0.25);
+          box-shadow: 0 0 24px rgba(59, 130, 246, 0.3);
+        }
+        100% {
+          background-color: transparent;
+          box-shadow: 0 0 0 transparent;
+        }
+      }
+
+      .highlight-momentary {
+        animation: highlight-fade 5s ease-out forwards;
+        border-radius: 8px; /* Optional: rounds the corners */
+      }
+    </style>
+
+    {/* ======================================================================= */}
+    {/* NEW: SCRIPT FOR MOMENTARY HIGHLIGHT ON SCROLL */}
+    {/* ======================================================================= */}
+    <script is:inline>
+      function setupAnchorHighlighting() {
+        const anchorLinks = document.querySelectorAll('a[href^="/#"]'); // More specific selector
+        anchorLinks.forEach((link) => {
+          if (link.dataset.highlightListener) return;
+          link.addEventListener('click', (event) => {
+            const href = link.getAttribute('href');
+            const targetId = href.split('#')[1]; // Get the ID from the href
+            if (!targetId) return;
+
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              targetElement.classList.add('highlight-momentary');
+              setTimeout(() => {
+                targetElement.classList.remove('highlight-momentary');
+              }, 2500);
+            }
+          });
+          link.dataset.highlightListener = 'true';
+        });
+      }
+      document.addEventListener('DOMContentLoaded', setupAnchorHighlighting);
+      document.addEventListener('astro:after-swap', setupAnchorHighlighting);
+    </script>
   </body>
 </html>
+

@@ -1,46 +1,58 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import type { HTMLAttributes, ImageMetadata } from 'astro/types';
+import type { HTMLAttributes, ImageMetadata as AstroImageMetadata } from 'astro/types';
+
+// NOTE: Renamed to avoid conflict with the custom 'Image' interface below.
+export { AstroImageMetadata };
+
+// ===================================================================================
+// FIX #1: A NEW, REUSABLE 'LINK' TYPE FOR ALL NAVIGATION AND ACTIONS
+// ===================================================================================
+// types.d.ts
+export interface Link {
+  text: string;
+  href?: string;
+  links?: Array<Link>;  // for dropdown/child links
+  variant?: string;     // e.g. "primary", "secondary", "ghost"
+  "data-confirm-external"?: boolean;
+  "data-confirm-message"?: string;
+}
+
+
+// ✅ FIXED: Updated HeaderData to include showToggleTheme & showRssFeed
+export interface HeaderData {
+  links?: Array<Link>;
+  actions?: Array<Link>;
+  showToggleTheme?: boolean;
+  showRssFeed?: boolean;
+}
+
+export interface FooterData {
+  links?: Array<{
+    title?: string;
+    links?: Array<Link>;
+  }>;
+  secondaryLinks?: Array<Link>;
+  socialLinks?: Array<Link>;
+  footNote?: string;
+}
+// ===================================================================================
 
 export interface Post {
-  /** A unique ID number that identifies a post. */
   id: string;
-
-  /** A post’s unique slug – part of the post’s URL based on its name, i.e. a post called “My Sample Page” has a slug “my-sample-page”. */
   slug: string;
-
-  /**  */
   permalink: string;
-
-  /**  */
   publishDate: Date;
-  /**  */
   updateDate?: Date;
-
-  /**  */
   title: string;
-  /** Optional summary of post content. */
   excerpt?: string;
-  /**  */
-  image?: ImageMetadata | string;
-
-  /**  */
+  image?: AstroImageMetadata | string;
   category?: Taxonomy;
-  /**  */
   tags?: Taxonomy[];
-  /**  */
   author?: string;
-
-  /**  */
   metadata?: MetaData;
-
-  /**  */
   draft?: boolean;
-
-  /**  */
   Content?: AstroComponentFactory;
   content?: string;
-
-  /**  */
   readingTime?: number;
 }
 
@@ -52,13 +64,9 @@ export interface Taxonomy {
 export interface MetaData {
   title?: string;
   ignoreTitleTemplate?: boolean;
-
   canonical?: string;
-
   robots?: MetaDataRobots;
-
   description?: string;
-
   openGraph?: MetaDataOpenGraph;
   twitter?: MetaDataTwitter;
 }
@@ -162,7 +170,7 @@ export interface Testimonial {
 }
 
 export interface Input {
-  type: HTMLInputTypeAttribute;
+  type: string; // HTMLInputTypeAttribute is not a standard TS type
   name: string;
   label?: string;
   autocomplete?: string;
@@ -181,13 +189,14 @@ export interface Disclaimer {
 }
 
 // COMPONENTS
-export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
-  text?: string;
+export interface CallToAction extends Link {
   icon?: string;
-  classes?: Record<string, string>;
+  class?: string; // ✅ allow plain string
+  classes?: Record<string, string>; // optional for structured classes
   type?: 'button' | 'submit' | 'reset';
 }
+
+
 
 export interface ItemGrid {
   items?: Array<Item>;
@@ -264,7 +273,8 @@ export interface Faqs extends Omit<Headline, 'classes'>, Widget {
 export interface Steps extends Omit<Headline, 'classes'>, Widget {
   items?: Array<Item>;
   callToAction?: string | CallToAction;
-  image?: string | Image;
+  // FIX #3: Correctly typed the 'image' prop to be an object
+  image?: { src: string | AstroImageMetadata; alt: string };
   isReversed?: boolean;
 }
 

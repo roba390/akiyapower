@@ -10,8 +10,11 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialSlider from '~/components/TestimonialSlider.astro';
-import heroBgImage from '~/assets/images/EV-Hero.jpg';
-
+import repair from '~/assets/images/repair.jpg';
+import technician from '~/assets/images/About-page.jpg';
+import newbyd from '~/assets/images/new3.webp';
+import webmVideo from '~/assets/images/byd-video.webm'; // If you created one
+import posterImage from '~/assets/images/byd-poster.webp';
 const metadata = {
   title: 'Akiya Power Tech | EV Training and Service Center',
   ignoreTitleTemplate: true,
@@ -20,28 +23,23 @@ const metadata = {
 
 <Layout metadata={metadata}>
  <!-- Hero Widget ******************* -->
-  <Hero
-    image={{ src: heroBgImage, alt: 'Akiya Power Tech workshop background' }}
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Explore Courses',
-        href: '/#all-courses', // Links to courses in footer
-        icon: 'tabler:school',
-      },
-      { 
-        variant: 'secondary', 
-        text: 'Book a Service', 
-        href: 'https://your-booking-app-url.com', // Links to booking app
-      },
+    <Hero
+    // 👇 2. USE THE NEW VIDEO AND POSTER PROPS
+    poster={{ src: posterImage, alt: 'Akiya Power Tech workshop background' }}
+    video={[
+      { src: webmVideo, type: 'video/webm' }, // Browser will try this first
+      // { src: mp4Video, type: 'video/mp4' }   // Fallback for Safari, etc.
     ]}
+    actions={[ /* ... your actions ... */ ]}
   >
     <Fragment slot="title">
-      Akiya Power Tech training and service center
+      <span class="text-yellow-400">Akiya Power Tech</span> training and service center
     </Fragment>
 
     <Fragment slot="subtitle">
-      The leading center for hands-on EV training and professional repair services in Addis Ababa.
+      <p class="hidden md:block text-lg text-gray-200 mb-8 [text-wrap:balance]">
+        The leading center for hands-on EV training and professional repair services in Addis Ababa.
+      </p>
     </Fragment>
   </Hero>
 
@@ -108,7 +106,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: technician,
       alt: 'Akiya Power Tech Training Session',
     }}
   >
@@ -140,7 +138,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      src: repair,
       alt: 'Akiya Power Tech Service Center',
     }}
   >
@@ -152,6 +150,7 @@ const metadata = {
 
   <!-- Steps Widget ****************** -->
   <Steps
+    isReversed
     title="Start Your EV Technician Career in 3 Simple Steps"
     items={[
       {
@@ -171,9 +170,10 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      src: newbyd,
       alt: 'Steps image',
     }}
+    
   />
 
   <!-- FAQs Widget ******************* -->
@@ -224,10 +224,10 @@ const metadata = {
   <!-- Stats Widget ****************** -->
   <Stats
     stats={[
-      { title: 'Students Trained', amount: '1,200+' },
-      { title: 'Vehicles Serviced', amount: '5,000+' },
-      { title: 'Industry Partners', amount: '50+' },
-      { title: 'Certified Technicians', amount: '100+' },
+      { title: 'Students Trained', amount: '320+' },
+      { title: 'Vehicles Serviced', amount: '500+' },
+      { title: 'Industry Partners', amount: '15+' },
+      { title: 'Certified Technicians', amount: '10+' },
     ]}
   />
 
@@ -244,8 +244,10 @@ const metadata = {
       {
         variant: 'secondary',
         text: 'Book a Service',
-        href: 'https://your-booking-app-url.com', // Links to booking app
+        href: 'https://my-booking-app-ecru.vercel.app/', // Links to booking app
         icon: 'tabler:calendar-event',
+        'data-confirm-external': true,
+        'data-confirm-message': 'You are headed to our secure booking portal. Continue?',
       }
     ]}
   >

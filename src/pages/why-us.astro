@@ -1,128 +1,127 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Features from '~/components/widgets/Features.astro';
-import Content from '~/components/widgets/Content.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
+import { Image } from 'astro:assets';
+import Button from '~/components/ui/Button.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
-// Importing the hero background image for consistency
-import heroBgImage from '~/assets/images/Tech-For_Hero.jpg';
+// Using a relevant image for the custom header
+import pageHeaderImage from '~/assets/images/About-page.jpg'; 
 
 const metadata = {
-  title: 'Why Choose Us for Your EV Service',
-  description: 'Discover why Akiya Power Tech is the top choice for electric vehicle service in Addis Ababa. We offer unmatched expertise, advanced tools, and transparent service.',
+  title: 'Why Choose Us | Akiya Power Tech',
+  description: 'Discover why Akiya Power Tech is the leading choice for EV service and training in Addis Ababa. We offer certified technicians, advanced tools, and transparent pricing.'
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section -->
-  <Hero
-    image={{ src: heroBgImage, alt: 'Akiya Power Tech workshop' }}
-  >
-    <Fragment slot="title">
-      Why Choose Akiya Power Tech?
-    </Fragment>
-    <Fragment slot="subtitle">
-      The Premier Destination for Expert Electric Vehicle Care in Addis Ababa.
-    </Fragment>
-  </Hero>
+  <!-- 
+    CUSTOM PAGE HEADER:
+    - A focused, two-column layout consistent with other pages.
+  -->
+  <section class="bg-slate-50 dark:bg-slate-800/50 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div>
+          <p class="text-sm font-semibold uppercase text-blue-600 dark:text-blue-400">
+            Your Trusted EV Partner
+          </p>
+          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Why Choose Akiya Power Tech?
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 dark:text-gray-400">
+            We are more than just a service center; we are Ethiopia's hub for electric vehicle excellence. Our unique combination of expert service and advanced training ensures we are always at the forefront of EV technology.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <Button 
+              variant="primary" 
+              text="Book a Service" 
+              href="https://my-booking-app-ecru.vercel.app/" 
+              icon="tabler:calendar-event"
+              'data-confirm-external'={true}
+            />
+            <Button 
+              variant="secondary"
+              text="Explore Our Courses"
+              href="/#all-courses"
+            />
+          </div>
+        </div>
+        
+        <!-- Image Content -->
+        <div class="hidden md:block">
+          <Image
+            src={pageHeaderImage}
+            alt="The Akiya Power Tech team working collaboratively"
+            class="rounded-lg shadow-lg"
+            format="webp"
+            quality={80}
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Main Content Section -->
+  <section class="bg-white dark:bg-slate-900 py-16 sm:py-20">
+    <!-- 
+      FEATURES WIDGET:
+      - This clearly lists your key advantages in an easy-to-scan format.
+    -->
+    <Features2
+      title="Our Commitment to Excellence"
+      subtitle="We are dedicated to providing the highest standard of service and expertise in the rapidly evolving world of electric vehicles."
+      columns={3}
+      items={[
+        {
+          title: 'Certified & Trained Technicians',
+          description: 'Our technicians are not just mechanics; they are certified specialists trained in-house on the latest EV technology and safety protocols.',
+          icon: 'tabler:certificate',
+        },
+        {
+          title: 'Advanced Diagnostic Tools',
+          description: 'We invest in state-of-the-art, manufacturer-approved equipment to accurately diagnose and resolve any issue with your EV.',
+          icon: 'tabler:activity-heartbeat',
+        },
+        {
+          title: 'Transparent Pricing & Communication',
+          description: 'Receive clear, detailed estimates before any work begins. We believe in honest communication and no surprises.',
+          icon: 'tabler:message-circle-2',
+        },
+        {
+          title: 'Genuine & High-Quality Parts',
+          description: 'We use only OEM or equivalent high-quality parts to ensure the integrity, safety, and longevity of your vehicle.',
+          icon: 'tabler:settings-bolt',
+        },
+        {
+          title: 'Customer-Centric Service',
+          description: 'Your satisfaction is our priority. We provide a clean, professional environment and keep you informed every step of the way.',
+          icon: 'tabler:users',
+        },
+        {
+          title: 'Pioneering EV Education',
+          description: 'Our connection to our training center means our service team is always learning, ensuring we are prepared for the future of EV tech.',
+          icon: 'tabler:school',
+        },
+      ]}
+    />
+  </section>
 
-  <!-- Key Differentiators Section -->
-  <Features
-    id="why-us"
-    tagline="Our Commitment to Excellence"
-    title="What Sets Our Service Center Apart"
-    items={[
-      {
-        title: 'Dedicated EV Expertise',
-        description:
-          'Unlike general auto shops, we specialize exclusively in electric vehicles. Our technicians live and breathe EV technology, ensuring a deeper level of knowledge and skill.',
-        icon: 'tabler:plug',
-      },
-      {
-        title: 'Advanced Diagnostic Tools',
-        description:
-          'We invest in the latest manufacturer-grade diagnostic equipment to accurately pinpoint issues, saving you time and money on unnecessary repairs.',
-        icon: 'tabler:activity-heartbeat',
-      },
-      {
-        title: 'Transparent & Honest Service',
-        description:
-          'We believe in clear communication. You will receive a detailed report and a transparent quote before any work begins. No surprises, no hidden fees.',
-        icon: 'tabler:message-circle-2',
-      },
-      {
-        title: 'Genuine & High-Quality Parts',
-        description:
-          'We use only OEM (Original Equipment Manufacturer) or equivalent high-quality parts to ensure the safety, performance, and longevity of your vehicle.',
-        icon: 'tabler:settings-bolt',
-      },
-    ]}
-  />
-
-  <!-- Our Facility Section -->
-  <Content
-    isReversed
-    tagline="Our State-of-the-Art Facility"
-    title="A Workshop Built for the Future of Automotive"
-    items={[
-      {
-        title: 'Safety First Environment',
-        description:
-          'Our workshop is specifically designed and equipped to handle the high-voltage systems of electric vehicles safely and efficiently.',
-      },
-      {
-        title: 'Clean and Professional',
-        description:
-          'We maintain a clean, organized, and professional environment because we believe the quality of our workspace reflects the quality of our work.',
-      },
-      {
-        title: 'The Right Tools for the Job',
-        description:
-          'From battery pack lifts to advanced calibration tools, we have everything needed to service your EV correctly the first time.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'A clean and modern EV service workshop',
-    }}
-  />
-
-  <!-- Testimonials Widget -->
-  <Testimonials
-    title="What Our Customers Say"
-    subtitle="Don't just take our word for it. Here's what EV owners in our community are saying about their experience."
-    testimonials={[
-      {
-        testimonial: `The team at Akiya Power Tech solved a complex battery issue that two other shops couldn't diagnose. Their expertise is unmatched in this city. Highly recommended.`,
-        name: 'Abebe T.',
-        job: 'EV Owner, Addis Ababa',
-      },
-      {
-        testimonial: `I was impressed by their professionalism and clear communication. They explained the entire process and the final bill was exactly what they quoted. I finally have a service center I can trust.`,
-        name: 'Selamawit G.',
-        job: 'EV Driver',
-      },
-      {
-        testimonial: `From the moment I walked in, I felt confident that my electric vehicle was in good hands. Their state-of-the-art facility and knowledgeable staff made all the difference.`,
-        name: 'Kebede M.',
-        job: 'Electric Vehicle Enthusiast',
-      },
-    ]}
-  />
-
-  <!-- CallToAction Widget -->
+  <!-- Final Call to Action -->
   <CallToAction
     actions={[
-      {
-        variant: 'primary',
-        text: 'Book an Appointment',
-        href: 'https://my-booking-app-ecru.vercel.app/', // IMPORTANT: Update this link
-        icon: 'tabler:calendar-event'
+      { 
+        variant: 'primary', 
+        text: 'Book an Appointment', 
+        href: 'https://my-booking-app-ecru.vercel.app/',
+        icon: 'tabler:calendar-event',
+        'data-confirm-external': true,
       },
     ]}
     title="Experience the Akiya Power Tech Difference"
-    subtitle="Trust your electric vehicle to the dedicated experts. Schedule your service today and drive with confidence."
+    subtitle="Trust your electric vehicle to the experts. Schedule your service today and drive with confidence."
   />
 </Layout>
