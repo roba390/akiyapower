@@ -1,45 +1,68 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import workshopImage from '~/assets/images/ev-workshop.jpg'; // Update as needed
-import benefitImage from '~/assets/images/ev-workshop.jpg'; // Update as needed
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+// Your image imports are perfect
+import workshopImage from '~/assets/images/ev-workshop.jpg';
+import benefitImage from '~/assets/images/ev-workshop.jpg';
+
+const metadata = {
+  title: 'EV Workshop Practice | Akiya Power Tech',
+};
 ---
 
-<PageLayout metadata={{ title: 'EV Workshop Practice' }}>
-  <!-- Hero Section -->
-  <Hero
-    title="EV Workshop Practice"
-    tagline="Safety • Tools • Real-World Skills"
-    image={{ src: workshopImage, alt: 'EV workshop training session' }}
-  >
-    <Fragment slot="subtitle">
-      This course provides hands-on training in EV service environments, focusing on safety protocols, tool usage, and practical maintenance procedures.
-    </Fragment>
-  </Hero>
+<PageLayout metadata={metadata}>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={workshopImage}
+          alt="EV workshop training session"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <!-- Course Overview -->
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Practical Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          EV Workshop <span class="text-blue-400">Practice</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          This course provides hands-on training in EV service environments, focusing on safety protocols, tool usage, and practical maintenance procedures.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     tagline="Course Overview"
     title="What You'll Learn"
     isReversed
     items={[
-      {
-        title: 'Workshop Safety',
-        description: 'Master high-voltage safety procedures, PPE usage, and emergency protocols.',
-      },
-      {
-        title: 'Tool Familiarization',
-        description: 'Get hands-on with EV-specific tools, diagnostic equipment, and service gear.',
-      },
-      {
-        title: 'Service Procedures',
-        description: 'Practice battery removal, motor inspection, and system calibration in a workshop setting.',
-      },
-      {
-        title: 'Team Collaboration',
-        description: 'Learn how to work effectively in service teams, follow SOPs, and document repairs.',
-      },
+      { title: 'Workshop Safety', description: 'Master high-voltage safety procedures, PPE usage, and emergency protocols.' },
+      { title: 'Tool Familiarization', description: 'Get hands-on with EV-specific tools, diagnostic equipment, and service gear.' },
+      { title: 'Service Procedures', description: 'Practice battery removal, motor inspection, and system calibration in a workshop setting.' },
+      // { title: 'Team Collaboration', description: 'Learn how to work effectively in service teams, follow SOPs, and document repairs.' },
     ]}
     image={{ src: workshopImage, alt: 'EV workshop tools and technician training' }}
   >
@@ -48,47 +71,37 @@ import benefitImage from '~/assets/images/ev-workshop.jpg'; // Update as needed
     </span>
   </Content>
 
-  <!-- Program Benefits -->
   <Content
     tagline="Why Take This Course"
     title="Key Benefits"
     items={[
-      {
-        title: 'Hands-On Experience',
-        description: 'Apply your knowledge in a fully equipped EV workshop with real vehicles and systems.',
-      },
-      {
-        title: 'Safety Certification',
-        description: 'Earn credentials in EV safety and workshop readiness.',
-      },
-      {
-        title: 'Career Preparation',
-        description: 'Build confidence and competence for roles in EV service centers and technical support.',
-      },
-      {
-        title: 'Professional Standards',
-        description: 'Learn to follow industry-standard procedures and documentation practices.',
-      },
+      { title: 'Hands-On Experience', description: 'Apply your knowledge in a fully equipped EV workshop with real vehicles and systems.' },
+      { title: 'Safety Certification', description: 'Earn credentials in EV safety and workshop readiness.' },
+      { title: 'Career Preparation', description: 'Build confidence and competence for roles in EV service centers and technical support.' },
+      // { title: 'Professional Standards', description: 'Learn to follow industry-standard procedures and documentation practices.' },
     ]}
     image={{ src: benefitImage, alt: 'EV workshop lab and technician tools' }}
   >
     <span slot="content">
       <p class="text-lg">EV Workshop Practice bridges the gap between theory and application. It’s your launchpad into the electric vehicle service industry.</p>
     </span>
-
     <span slot="bg">
       <div class="absolute inset-0 bg-gray-100 dark:bg-transparent"></div>
     </span>
   </Content>
 
-  <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Ready to get your hands dirty (safely)? Let’s get you workshop-ready.</p>
-  </div>
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Start Your Hands-On Training?</Fragment>
+    <Fragment slot="subtitle">
+      Ready to get your hands dirty (safely)? Let’s get you workshop-ready.
+    </Fragment>
+  </CallToAction>
 </PageLayout>

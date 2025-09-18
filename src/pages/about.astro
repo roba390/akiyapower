@@ -1,17 +1,19 @@
 ---
-import Features2 from '~/components/widgets/Features2.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import Stats from '~/components/widgets/Stats.astro';
 import Content from '~/components/widgets/Content.astro';
-import { Icon } from 'astro-icon/components';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { Image } from 'astro:assets';
 
-import Image from '~/components/common/Image.astro';
+// --- IMAGE IMPORTS ---
+// IMPORTANT: Add the file paths for your new leadership photos here
+import aboutHeroImage from '~/assets/images/byd.webp';
+import missionImage from '~/assets/images/about.webp'; // A new image for the Mission section
+import samuelGetachewImage from '~/assets/images/samuel.webp'; // Replace with your actual file path
+import tsionImage from '~/assets/images/tsion.webp'; // Replace with your actual file path
 
-// All your original images are kept
-import aboutImage from '~/assets/images/new2.webp';
+// Your other existing images
 import evWorkshopImage from '~/assets/images/students-working.jpg';
 import theoryClassroomImage from '~/assets/images/theory-classroom.jpg';
 import studentCertificateImage1 from '~/assets/images/students-certificates.jpg';
@@ -24,22 +26,27 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section: Text updated to include both business pillars -->
-  <Hero
-    tagline="About Akiya Power Tech"
-    image={{ src: aboutImage, alt: 'Inside our EV training and service center' }}
-  >
-    <Fragment slot="title">
-      Ethiopia’s Complete EV Solution <br />
-      <span class="text-accent dark:text-white">Training Experts & Servicing Vehicles</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Akiya Power Tech is a unified center of excellence, leading the future of transport with hands-on technical training and professional, state-of-the-art vehicle servicing.
-    </Fragment>
-  </Hero>
-
-  <!-- Stats Section: Updated to include service numbers -->
+  <!-- 
+    CUSTOM HERO SECTION (styled like trainers.astro)
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      <div class="absolute inset-0 z-0">
+        <Image src={aboutHeroImage} alt="Inside the Akiya Power Tech center" class="w-full h-full object-cover" format="webp" quality={80} loading="eager"/>
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Ethiopia’s Complete <span class="text-blue-400">EV Solution</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          Akiya Power Tech is a unified center of excellence, leading the future of transport with hands-on technical training and professional, state-of-the-art vehicle servicing.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
   <Stats
     title="Our Journey in Numbers"
     stats={[
@@ -50,7 +57,11 @@ const metadata = {
     ]}
   />
 
-  <!-- Video Section: Text updated slightly -->
+  
+
+  <!-- 
+    VIDEO SECTION (RESTORED)
+  -->
   <section class="py-12 md:py-20 bg-gray-50 dark:bg-slate-800">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-10 md:mb-12">
@@ -59,34 +70,39 @@ const metadata = {
           Get a glimpse of our state-of-the-art facility where expert training and professional service come together.
         </p>
       </div>
-      <div class="w-full rounded-lg overflow-hidden shadow-2xl" style="max-width: 100%; height: 400px; margin: auto;">
-        <video class="w-full h-full object-contain" src="/videos/akiyapower-promo.mp4" controls poster={evWorkshopImage.src} style="width: 100%; height: 100%;" preload="none">
+      <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+        <video class="w-full h-full object-cover" src="/videos/akiyapower-promo.mp4" controls poster={evWorkshopImage.src} preload="metadata" playsinline>
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
   </section>
+  <!-- 
+    NEW: "Our Mission & Vision" Section - now with an image
+  -->
+  <Content image={{ src: missionImage, alt: 'Akiya Power Tech facility' }}>
+    <Fragment slot="content">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Mission & Vision</h2>
+      <p class="text-lg text-gray-600 dark:text-slate-400">
+        Our mission is to accelerate Ethiopia's transition to sustainable transportation. We achieve this by building a self-sufficient ecosystem for electric mobility—empowering a new generation of skilled technicians through world-class training while providing reliable, expert service that EV owners can trust. We envision a future where electric vehicles are a cornerstone of Ethiopia's transportation network, supported by a robust local workforce.
+      </p>
+    </Fragment>
+  </Content>
 
-  <!-- NEW SECTION HEADER: To introduce both pillars -->
+  <!-- Two Pillars Section Header -->
   <section class="py-16 lg:py-20">
-    <div class="max-w-xl mx-auto text-center">
+    <div class="max-w-xl mx-auto text-center px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Two Pillars of Expertise</h2>
         <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">We've built a complete ecosystem to support the entire lifecycle of electric vehicles in Ethiopia.</p>
     </div>
   </section>
 
-  <!-- Content Section for Training: Repurposed from your original -->
+  <!-- Content Section for Training (with full descriptions) -->
   <Content
     isReversed={true}
     items={[
-      {
-        title: 'Theory Meets Practice',
-        description: 'Our curriculum begins in modern classrooms where students learn the foundational principles of EV technology, from electrical theory to advanced diagnostics.',
-      },
-      {
-        title: 'State-of-the-Art Workshops',
-        description: 'Our workshops are fully equipped with the latest tools, allowing students to apply theoretical knowledge to real-world mechanical and electrical challenges.',
-      },
+      { title: 'Theory Meets Practice', description: 'Our curriculum begins in modern classrooms where students learn the foundational principles of EV technology, from electrical theory to advanced diagnostics.' },
+      { title: 'State-of-the-Art Workshops', description: 'Our workshops are fully equipped with the latest tools, allowing students to apply theoretical knowledge to real-world mechanical and electrical challenges.' },
     ]}
     image={{ src: theoryClassroomImage, alt: 'Akiya Power Tech theory classroom' }}
   >
@@ -96,17 +112,11 @@ const metadata = {
     </Fragment>
   </Content>
   
-  <!-- NEW Content Section for Servicing: Using your existing components -->
+  <!-- Content Section for Servicing (with full descriptions) -->
   <Content
     items={[
-      {
-        title: 'Advanced Diagnostics',
-        description: 'We use manufacturer-grade tools to accurately identify issues, from battery health to software glitches, ensuring a precise and effective repair.',
-      },
-      {
-        title: 'Professional Maintenance & Repair',
-        description: 'Our certified technicians provide a full range of services, including battery conditioning, brake servicing, and motor repair, to keep your EV in peak condition.',
-      },
+      { title: 'Advanced Diagnostics', description: 'We use manufacturer-grade tools to accurately identify issues, from battery health to software glitches, ensuring a precise and effective repair.' },
+      { title: 'Professional Maintenance & Repair', description: 'Our certified technicians provide a full range of services, including battery conditioning, brake servicing, and motor repair, to keep your EV in peak condition.' },
     ]}
     image={{ src: evWorkshopImage, alt: 'An expert technician servicing an electric vehicle' }}
   >
@@ -116,65 +126,119 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Your original Steps2, Features3, Graduates, and Map sections are below, with minor text tweaks -->
-
-  <Steps2
-    title="Our Core Values"
-    subtitle="Our philosophy at Akiya Power Tech applies to everything we do, from training students to servicing vehicles."
-    items={[
-      { title: 'Hands-On Expertise', description: 'We believe in practical, real-world application, whether in a training lab or a service bay.' },
-      { title: 'Local Relevance', description: 'We address local EV challenges and infrastructure needs for both technicians and drivers.' },
-      { title: 'Global Standards', description: 'We align with international best practices for both training and vehicle repair.' },
-    ]}
-  />
-
-  <Steps2
-    title="Our Achievements"
-    subtitle="In just a short time, Akiya Power Tech has made strides in awareness, engagement, and impact."
-    isReversed={true}
-    items={[
-      { title: 'National TV Features', description: 'Featured on local media for leading EV education and service in Ethiopia.' },
-      { title: 'Student Success Stories', description: 'Our graduates have joined top EV workshops, mobile service units, and renewable startups.' },
-      { title: 'Industry Partnerships', description: 'We connect with suppliers and importers to align training and service with market demands.' },
-    ]}
-  />
-
-  <section class="py-12 md:py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-10 md:mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Celebrating Our Graduates</h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">We are proud of our trainees who are now shaping the future of mobility in Ethiopia.</p>
+  <!-- 
+    LEADERSHIP SECTION (LOWER ON THE PAGE)
+  -->
+  <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Meet Our Leadership</h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">The driving force behind our vision and commitment to excellence.</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="text-center">
-          <Image class="rounded-lg shadow-lg mx-auto mb-4 w-full h-auto object-cover aspect-[4/3]" src={studentCertificateImage1} alt="Graduate with certificate" />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Samuel Getachew Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md">
+          <div class="flex-shrink-0">
+            <Image src={samuelGetachewImage} alt="Samuel Getachew" class="w-32 h-32 rounded-full object-cover" format="webp" />
+          </div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Samuel Getachew</h3>
+            <p class="text-blue-600 dark:text-blue-400">General Manager</p>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Samuel leads Akiya Power Tech with a deep passion for sustainable technology and local empowerment. His strategic vision is focused on building a robust EV ecosystem in Ethiopia from the ground up.</p>
+          </div>
         </div>
-        <div class="text-center">
-          <Image class="rounded-lg shadow-lg mx-auto mb-4 w-full h-auto object-cover aspect-[4/3]" src={studentCertificateImage2} alt="Students proudly display their certificates" />
-        </div>
-        <div class="text-center">
-          <Image class="rounded-lg shadow-lg mx-auto mb-4 w-full h-auto object-cover aspect-[4/3]" src={studentCertificateImage3} alt="A successful trainee with their completion certificate" />
+        <!-- Tsion Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md">
+          <div class="flex-shrink-0">
+            <Image src={tsionImage} alt="Tsion" class="w-32 h-32 rounded-full object-cover" format="webp" />
+          </div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Tsion</h3>
+            <p class="text-blue-600 dark:text-blue-400">Assistant to the GM</p>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Tsion manages the daily operations and ensures a seamless experience for both our students and service customers. She is the central point of contact for all administrative and logistical matters.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  
-  <div class="py-12 px-4 md:px-6 lg:px-8">
+
+  <!-- Core Values & Achievements (with full text) -->
+  <section class="py-16 sm:py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Steps2
+        title="Our Core Values"
+        items={[
+          { title: 'Hands-On Expertise', description: 'We believe in practical, real-world application, whether in a training lab or a service bay.' },
+          { title: 'Local Relevance', description: 'We address local EV challenges and infrastructure needs for both technicians and drivers.' },
+          { title: 'Global Standards', description: 'We align with international best practices for both training and vehicle repair.' },
+        ]}
+      />
+      <div class="mt-16">
+        <Steps2
+          title="Our Achievements"
+          isReversed={true}
+          items={[
+            { title: 'National TV Features', description: 'Featured on local media for leading EV education and service in Ethiopia.' },
+            { title: 'Student Success Stories', description: 'Our graduates have joined top EV workshops, mobile service units, and renewable startups.' },
+            { title: 'Industry Partnerships', description: 'We connect with suppliers and importers to align training and service with market demands.' },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Graduates Gallery -->
+  <section class="py-12 md:py-20 bg-slate-50 dark:bg-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 md:mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold">Celebrating Our Graduates</h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">We are proud of our trainees who are now shaping the future of mobility in Ethiopia.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div><Image class="rounded-lg shadow-lg" src={studentCertificateImage1} alt="Graduate with certificate"/></div>
+        <div><Image class="rounded-lg shadow-lg" src={studentCertificateImage2} alt="Students with certificates"/></div>
+        <div><Image class="rounded-lg shadow-lg" src={studentCertificateImage3} alt="Trainee with certificate"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="py-12 px-4 md:px-6 lg:px-8 bg-white dark:bg-slate-900">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-8">Find Us on the Map</h2>
       <div class="aspect-w-16 aspect-h-9 w-full rounded-lg overflow-hidden shadow-lg">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252226.19310211248!2d38.61423494133354!3d8.968989596554435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b850048ff654d%3A0x91b64553a496f360!2sAkiya%20Power%20Tech%20Training%20Center!5e0!3m2!1sen!2set!4v1755783190816!5m2!1sen!2set" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d504432.12261032563!2d38.154932889062515!3d8.983560299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b850048ff654d%3A0x91b64553a496f360!2sAkiya%20Power%20Tech%20Training%20Center!5e0!3m2!1sen!2set!4v1758189009185!5m2!1sen!2set"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- "Get in Touch" Section with Clickable Links -->
   <Features2
     title="Get in Touch"
     tagline="Ask about courses, servicing, or partnerships"
     columns={2}
     items={[
-      { title: 'Email', description: 'contact@akiyapowertech.com', icon: 'tabler:mail' },
-      { title: 'Phone', description: '+251 900 00 58 09 || +251 911 11 39 94', icon: 'tabler:phone' },
+      { 
+        title: 'Email', 
+        description: '<a href="mailto:contact@akiyapowertech.com" class="text-blue-600 hover:underline dark:text-blue-400">contact@akiyapowertech.com</a>', 
+        icon: 'tabler:mail' 
+      },
+      { 
+        title: 'Phone', 
+        description: `
+          <a href="tel:+251900005809" class="text-blue-600 hover:underline dark:text-blue-400 block">+251 900 00 58 09</a>
+          <a href="tel:+251911113994" class="text-blue-600 hover:underline dark:text-blue-400 block">+251 911 11 39 94</a>
+        `, 
+        icon: 'tabler:phone' 
+      },
     ]}
   />
 </Layout>

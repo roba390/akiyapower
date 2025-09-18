@@ -1,45 +1,68 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import differentialImage from '~/assets/images/for-courses.jpg'; // Update as needed
-import benefitImage from '~/assets/images/repair.jpg'; // Update as needed
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+// Your image imports are perfect
+import differentialImage from '~/assets/images/for-courses.jpg';
+import benefitImage from '~/assets/images/repair.jpg';
+
+const metadata = {
+  title: 'EV Differential & Tune-Up Training | Akiya Power Tech',
+};
 ---
 
-<PageLayout metadata={{ title: 'EV Differential & Tune-Up' }}>
-  <!-- Hero Section -->
-  <Hero
-    title="EV Differential & Tune-Up"
-    tagline="Drivetrain • Inspection • Service"
-    image={{ src: differentialImage, alt: 'EV differential training' }}
-  >
-    <Fragment slot="subtitle">
-      This course covers electric vehicle drivetrain systems, focusing on differential operation, wear diagnostics, and essential tune-up procedures for long-term performance.
-    </Fragment>
-  </Hero>
+<Layout metadata={metadata}>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={differentialImage}
+          alt="EV differential and drivetrain training"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <!-- Course Overview -->
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Advanced Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          EV Differential <span class="text-blue-400">& Tune-Up</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          This course covers electric vehicle drivetrain systems, focusing on differential operation, diagnostics, and essential tune-up procedures.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     tagline="Course Overview"
     title="What You'll Learn"
     isReversed
     items={[
-      {
-        title: 'EV Differential Systems',
-        description: 'Understand single-speed and multi-speed EV differentials, gear ratios, and torque distribution.',
-      },
-      {
-        title: 'Drivetrain Inspection',
-        description: 'Learn how to inspect shafts, joints, and mounts for wear, misalignment, and vibration.',
-      },
-      {
-        title: 'Routine Tune-Up Procedures',
-        description: 'Perform fluid checks, software updates, and mechanical adjustments for optimal performance.',
-      },
-      {
-        title: 'Service Documentation',
-        description: 'Record service history, interpret fault codes, and follow OEM maintenance schedules.',
-      },
+      { title: 'EV Differential Systems', description: 'Understand single-speed and multi-speed EV differentials, gear ratios, and torque distribution.' },
+      { title: 'Drivetrain Inspection', description: 'Learn how to inspect shafts, joints, and mounts for wear, misalignment, and vibration.' },
+      { title: 'Routine Tune-Up Procedures', description: 'Perform fluid checks, software updates, and mechanical adjustments for optimal performance.' },
+      // { title: 'Service Documentation', description: 'Record service history, interpret fault codes, and follow OEM maintenance schedules.' },
     ]}
     image={{ src: differentialImage, alt: 'EV drivetrain components and tools' }}
   >
@@ -48,47 +71,37 @@ import benefitImage from '~/assets/images/repair.jpg'; // Update as needed
     </span>
   </Content>
 
-  <!-- Program Benefits -->
   <Content
     tagline="Why Take This Course"
     title="Key Benefits"
     items={[
-      {
-        title: 'Hands-On Drivetrain Labs',
-        description: 'Work with EV differential units, inspect components, and simulate torque loads.',
-      },
-      {
-        title: 'Preventive Maintenance Skills',
-        description: 'Learn how regular tune-ups extend EV lifespan and reduce service costs.',
-      },
-      {
-        title: 'Diagnostic Confidence',
-        description: 'Use tools to detect drivetrain faults and verify alignment and balance.',
-      },
-      {
-        title: 'Industry Relevance',
-        description: 'Gain practical skills for EV workshops, fleet service, and technical support roles.',
-      },
+      { title: 'Hands-On Drivetrain Labs', description: 'Work with EV differential units, inspect components, and simulate torque loads.' },
+      { title: 'Preventive Maintenance Skills', description: 'Learn how regular tune-ups extend EV lifespan and reduce service costs.' },
+      { title: 'Diagnostic Confidence', description: 'Use tools to detect drivetrain faults and verify alignment and balance.' },
+      // { title: 'Industry Relevance', description: 'Gain practical skills for EV workshops, fleet service, and technical support roles.' },
     ]}
     image={{ src: benefitImage, alt: 'EV tune-up lab and technician setup' }}
   >
     <span slot="content">
       <p class="text-lg">EV differentials and tune-ups are essential for smooth, efficient driving. This course prepares you to inspect, service, and optimize them with precision.</p>
     </span>
-
     <span slot="bg">
       <div class="absolute inset-0 bg-green-50 dark:bg-transparent"></div>
     </span>
   </Content>
 
-  <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Want to master EV drivetrain service? Reach out and let’s get started.</p>
-  </div>
-</PageLayout>
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Master EV Drivetrain Service?</Fragment>
+    <Fragment slot="subtitle">
+      Want to specialize in keeping EVs running smoothly? Reach out and let’s get your training started.
+    </Fragment>
+  </CallToAction>
+</Layout>

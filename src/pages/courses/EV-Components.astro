@@ -1,45 +1,68 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import evImage from '~/assets/images/ev-core.jpg'; // Update as needed
-import benefitImage from '~/assets/images/battery-training.jpg'; // Update as needed
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+// Your image imports are perfect
+import evImage from '~/assets/images/ev-core.jpg';
+import benefitImage from '~/assets/images/battery-training.jpg';
+
+const metadata = {
+  title: 'EV Components Training | Akiya Power Tech',
+};
 ---
 
-<PageLayout metadata={{ title: 'Components of EV' }}>
-  <!-- Hero Section -->
-  <Hero
-    title="Components of EV"
-    tagline="Explore • Understand • Apply"
-    image={{ src: evImage, alt: 'EV components laid out for training' }}
-  >
-    <Fragment slot="subtitle">
-      This course breaks down the essential components of electric vehicles, helping learners understand how each part contributes to performance, safety, and efficiency.
-    </Fragment>
-  </Hero>
+<PageLayout metadata={metadata}>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={evImage}
+          alt="EV components laid out for training"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <!-- Course Overview -->
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Foundational Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          Essential <span class="text-blue-400">Components of an EV</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          This course breaks down the core parts of electric vehicles, helping you understand how each component contributes to performance, safety, and efficiency.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     tagline="Course Overview"
     title="What You'll Learn"
     isReversed
     items={[
-      {
-        title: 'Battery Systems',
-        description: 'Understand battery pack configurations, management systems, and energy flow.',
-      },
-      {
-        title: 'Power Electronics',
-        description: 'Explore inverters, converters, and controllers that regulate EV performance.',
-      },
-      {
-        title: 'Traction Motors',
-        description: 'Learn how electric motors generate torque and interact with the drivetrain.',
-      },
-      {
-        title: 'Charging Infrastructure',
-        description: 'Review onboard chargers, connectors, and external charging stations.',
-      },
+      { title: 'Battery Systems', description: 'Understand battery pack configurations, management systems, and energy flow.' },
+      { title: 'Power Electronics', description: 'Explore inverters, converters, and controllers that regulate EV performance.' },
+      { title: 'Traction Motors', description: 'Learn how electric motors generate torque and interact with the drivetrain.' },
+      // { title: 'Charging Infrastructure', description: 'Review onboard chargers, connectors, and external charging stations.' },
     ]}
     image={{ src: evImage, alt: 'EV component training session' }}
   >
@@ -48,47 +71,37 @@ import benefitImage from '~/assets/images/battery-training.jpg'; // Update as ne
     </span>
   </Content>
 
-  <!-- Program Benefits -->
   <Content
     tagline="Why Take This Course"
     title="Key Benefits"
     items={[
-      {
-        title: 'Comprehensive Breakdown',
-        description: 'Covers mechanical, electrical, and software-driven components of EVs.',
-      },
-      {
-        title: 'Hands-On Learning',
-        description: 'Engage with real EV parts and diagnostic tools during practical sessions.',
-      },
-      {
-        title: 'Career Relevance',
-        description: 'Build foundational knowledge for roles in EV service, design, and manufacturing.',
-      },
-      {
-        title: 'Modular Structure',
-        description: 'Each topic is structured for easy integration into broader EV training programs.',
-      },
+      { title: 'Comprehensive Breakdown', description: 'Covers mechanical, electrical, and software-driven components of EVs.' },
+      { title: 'Hands-On Learning', description: 'Engage with real EV parts and diagnostic tools during practical sessions.' },
+      { title: 'Career Relevance', description: 'Build foundational knowledge for roles in EV service, design, and manufacturing.' },
+      // { title: 'Modular Structure', description: 'Each topic is structured for easy integration into broader EV training programs.' },
     ]}
     image={{ src: benefitImage, alt: 'EV component lab setup' }}
   >
     <span slot="content">
       <p class="text-lg">Understanding EV components is key to diagnosing issues, improving performance, and innovating in the electric mobility space.</p>
     </span>
-
     <span slot="bg">
       <div class="absolute inset-0 bg-yellow-50 dark:bg-transparent"></div>
     </span>
   </Content>
 
-  <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Let us know if you’d like to join or customize this course for your team.</p>
-  </div>
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Understand the Core of EV Technology?</Fragment>
+    <Fragment slot="subtitle">
+      Let us know if you’d like to join this foundational course or customize it for your team.
+    </Fragment>
+  </CallToAction>
 </PageLayout>

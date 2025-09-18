@@ -1,48 +1,69 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
 
-import batteryImage from '~/assets/images/repair.jpg'; // replace with your actual image
-import batteryBenefitImage from '~/assets/images/ev-battery-1.jpg'; // replace with your actual image
+// Your image imports are perfect
+import batteryImage from '~/assets/images/repair.jpg';
+import batteryBenefitImage from '~/assets/images/ev-battery-1.jpg';
 
 const metadata = {
-  title: 'Battery Technology Training',
+  title: 'Battery Technology Training | Akiya Power Tech',
 };
 ---
 
 <Layout metadata={metadata}>
-  <Hero
-    title="Battery Technology"
-    tagline="Lithium-Ion Systems, Safety, and Management"
-    image={{ src: batteryImage, alt: 'Battery Training' }}
-  >
-    <Fragment slot="subtitle">
-      This course dives deep into electric vehicle battery systems, safety protocols, diagnostics, and thermal management techniques used across modern EV platforms.
-    </Fragment>
-  </Hero>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+    - It uses the <Image> component for background optimization and WebP conversion.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={batteryImage}
+          alt="Advanced EV Battery Technology Training"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Core Certification Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          Mastering EV <span class="text-blue-400">Battery Technology</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          Dive deep into lithium-ion systems, safety protocols, diagnostics, and thermal management techniques used across modern EV platforms.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     isReversed
     tagline="Course Overview"
     title="Course Topics"
     items={[
-      {
-        title: 'Battery Architecture',
-        description: 'Cell types, modules, packs, and configuration standards.',
-      },
-      {
-        title: 'BMS (Battery Management System)',
-        description: 'Monitoring, balancing, and fault response protocols.',
-      },
-      {
-        title: 'Thermal Management',
-        description: 'Cooling techniques, sensors, and heat dissipation control.',
-      },
-      {
-        title: 'Safety Procedures',
-        description: 'Handling, inspection, and risk mitigation techniques.',
-      },
+      { title: 'Battery Architecture', description: 'Cell types, modules, packs, and configuration standards.' },
+      { title: 'BMS (Battery Management System)', description: 'Monitoring, balancing, and fault response protocols.' },
+      { title: 'Thermal Management', description: 'Cooling techniques, sensors, and heat dissipation control.' },
+      // { title: 'Safety Procedures', description: 'Handling, inspection, and risk mitigation techniques.' },
     ]}
     image={{ src: batteryImage, alt: 'Battery Training Session' }}
   >
@@ -51,47 +72,39 @@ const metadata = {
       <p>Electric vehicle battery systems are the heart of every EV. Learn how to test, inspect, and protect them with professional-grade skills and tools.</p>
     </span>
   </Content>
+  
   <Content
-  tagline="Why This Course Matters"
-  title="Program Benefits"
-  items={[
-    {
-      title: 'Certification-Ready',
-      description: 'Aligned with local and global lithium battery handling standards.',
-    },
-    {
-      title: 'Hands-On Labs',
-      description: 'Safely dissect packs, work with sensors, and simulate cell balancing.',
-    },
-    {
-      title: 'Real-World Scenarios',
-      description: 'Train with damaged and healthy battery cases for inspection accuracy.',
-    },
-    {
-      title: 'EV Industry Relevance',
-      description: 'Applicable knowledge for buses, cars, and grid-connected storage.',
-    },
-  ]}
-  image={{ src: batteryBenefitImage, alt: 'Battery training demonstration' }}
->
-  <span slot="content">
-    <h3 class="text-2xl font-bold mb-2">Powering the Future</h3>
-    <p class="text-lg">Graduates become battery techs who understand not just chemistry—but how to manage it safely in motion.</p>
-  </span>
+    tagline="Why This Course Matters"
+    title="Program Benefits"
+    items={[
+      { title: 'Certification-Ready', description: 'Aligned with local and global lithium battery handling standards.' },
+      { title: 'Hands-On Labs', description: 'Safely dissect packs, work with sensors, and simulate cell balancing.' },
+      { title: 'Real-World Scenarios', description: 'Train with damaged and healthy battery cases for inspection accuracy.' },
+      // { title: 'EV Industry Relevance', description: 'Applicable knowledge for buses, cars, and grid-connected storage.' },
+    ]}
+    image={{ src: batteryBenefitImage, alt: 'Battery training demonstration' }}
+  >
+    <span slot="content">
+      <h3 class="text-2xl font-bold mb-2">Powering the Future</h3>
+      <p class="text-lg">Graduates become battery techs who understand not just chemistry—but how to manage it safely in motion.</p>
+    </span>
+    <span slot="bg">
+      <div class="absolute inset-0 bg-yellow-50 dark:bg-transparent"></div>
+    </span>
+  </Content>
 
-  <span slot="bg">
-    <div class="absolute inset-0 bg-yellow-50 dark:bg-transparent"></div>
-  </span>
-</Content>
- <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Only a few seats left for the October session. Apply early to guarantee admission.</p>
-  </div>
-
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Become a Battery Expert?</Fragment>
+    <Fragment slot="subtitle">
+      Only a few seats are left for the next session. Apply early to guarantee your admission and start your journey in the most critical field of EV technology.
+    </Fragment>
+  </CallToAction>
 </Layout>

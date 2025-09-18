@@ -1,89 +1,152 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
-import Button from '~/components/ui/Button.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
 
-import pageHeaderImage from '~/assets/images/Tech-For_Hero.jpg'; 
+// Importing a relevant background image for the custom hero section
+import heroBgImage from '~/assets/images/working.webp'; 
+import techguys from '~/assets/images/motor.webp';
 
 const metadata = {
   title: 'Our EV Services | Akiya Power Tech',
   description: 'Akiya Power Tech offers expert EV maintenance and repair services in Addis Ababa, from battery diagnostics to software updates.'
 };
+
+// Data for the "Our Core Services" section
+const services = [
+  {
+    title: 'Battery Health Diagnostics',
+    description: 'In-depth analysis of your EV’s battery pack to assess its health, performance, and expected longevity.',
+    icon: 'tabler:battery-automotive',
+  },
+  {
+    title: 'Electric Motor Servicing',
+    description: 'Our technicians are trained to diagnose and service the core of your EV—the electric traction motor—ensuring optimal performance.',
+    icon: 'tabler:engine',
+  },
+  {
+    title: 'Brake System Maintenance',
+    description: 'Specialized service for EV regenerative and hydraulic braking systems to ensure your safety and vehicle efficiency.',
+    icon: 'tabler:disc',
+  },
+  {
+    title: 'Software & Firmware Updates',
+    description: 'Keep your vehicle up-to-date with the latest manufacturer software to improve performance, features, and safety.',
+    icon: 'tabler:device-laptop',
+  },
+  {
+    title: 'Charging Port & System Repair',
+    description: 'Having trouble charging? We diagnose and repair issues with onboard chargers, charging ports, and related systems.',
+    icon: 'tabler:plug',
+  },
+  {
+    title: 'ADAS Calibration',
+    description: 'Expert calibration for your Advanced Driver-Assistance Systems (ADAS) like cameras and sensors after any repairs.',
+    icon: 'tabler:steering-wheel',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
   <!-- 
-    CORRECTED RESPONSIVE PAGE HEADER:
-    - Now adapts correctly for mobile devices.
+    CUSTOM HERO SECTION:
+    - This is a self-contained hero, styled exactly like the one on the trainers page.
+    - The height is controlled to be shorter than a full-screen hero.
+    - It uses the <Image> component for background optimization and WebP conversion.
   -->
-  <section class="bg-slate-50 dark:bg-slate-800/50 py-16 sm:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        
-        <!-- Image Content (Now visible on mobile and ordered first) -->
-        <div class="order-first md:order-none">
-          <Image
-            src={pageHeaderImage}
-            alt="The Akiya Power Tech Service Center Workshop"
-            class="rounded-lg shadow-lg"
-            format="webp"
-            quality={80}
-            width={600}
-            height={400}
-          />
-        </div>
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={heroBgImage}
+          alt="Akiya Power Tech's modern EV service workshop"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-        <!-- Text Content (Ordered last on mobile) -->
-        <div class="text-center md:text-left order-last md:order-none">
-          <p class="text-sm font-semibold uppercase text-blue-600 dark:text-blue-400">
-            Akiya Power Tech Service Center
-          </p>
-          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Expert EV Maintenance & Repair
-          </h1>
-          <!-- Paragraph and Button are now hidden on mobile -->
-          <p class="hidden md:block mt-6 text-lg text-gray-600 dark:text-gray-400">
-            Your trusted partner for professional electric vehicle service in Addis Ababa. We use state-of-the-art tools to keep your EV running at its best.
-          </p>
-          <div class="hidden md:block mt-8">
-            <Button 
-              variant="primary" 
-              text="Book an Appointment Now" 
-              href="https://my-booking-app-ecru.vercel.app/" 
-              icon="tabler:calendar-event"
-              'data-confirm-external'={true}
-              'data-confirm-message'="You are headed to our secure booking portal. Continue?"
-            />
-          </div>
-        </div>
-        
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Expert <span class="text-yellow-400">EV Maintenance & Repair</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          Your trusted partner for professional electric vehicle service in Addis Ababa. We use state-of-the-art tools to keep your EV running at its best.
+        </p>
       </div>
     </div>
   </section>
-  
-  <!-- The rest of your page content remains unchanged -->
-  <section class="bg-white dark:bg-slate-900">
-    <Features2
-      title="Our Core Services"
-      subtitle="From routine maintenance to complex diagnostics, we handle all your EV needs with precision and care."
-      columns={3}
-      items={[ /* ... your service items ... */ ]}
-    />
-    <Steps
-      title="Our Simple & Transparent Service Process"
-      items={[ /* ... your step items ... */ ]}
-      image={{
-        src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-        alt: 'A technician working on a car',
-      }}
-    />
-    <CallToAction
-      actions={[ /* ... your CTA actions ... */ ]}
-      title="Ready to Schedule Your Service?"
-      subtitle="Don't wait for a small issue to become a big problem. Book your appointment today and experience the Akiya Power Tech difference."
-    />
+
+  <!-- 
+    "Our Core Services" Section:
+    - Redesigned with a clean grid of service cards for a more professional look.
+  -->
+  <section class="bg-white dark:bg-slate-900 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Our Core Services</h2>
+        <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+          From routine maintenance to complex diagnostics, we handle all your EV needs with precision and care.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          services.map((service) => (
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mb-4">
+                <Icon name={service.icon} class="w-7 h-7" />
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{service.title}</h3>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{service.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </section>
+
+  <!-- 
+    "Our Service Process" Section:
+    - The Steps component is perfect for this and is retained for clarity.
+  -->
+  <Steps
+    title="Our Simple & Transparent Service Process"
+    items={[
+      { title: 'Step 1: Book Your Appointment', description: 'Use our easy online booking system to schedule a time that works for you.', icon: 'tabler:calendar-plus' },
+      { title: 'Step 2: Expert Diagnosis', description: 'Our certified technicians use advanced diagnostic tools to accurately identify the issue with your vehicle.', icon: 'tabler:activity-heartbeat' },
+      { title: 'Step 3: Clear Communication', description: 'We provide you with a detailed report and a transparent quote. We won’t proceed with any work until you approve it.', icon: 'tabler:message-circle-2' },
+      { title: 'Step 4: Quality Repair', description: 'Our team performs the necessary repairs using high-quality parts and gets your vehicle back to you as soon as possible.', icon: 'tabler:tool' },
+    ]}
+    image={{
+      src: techguys,
+      alt: 'A technician working on a car',
+    }}
+  />
+
+  <!-- Final CallToAction -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book an Appointment',
+        href: 'https://my-booking-app-ecru.vercel.app/',
+        icon: 'tabler:calendar-event',
+        'data-confirm-external': true,
+        'data-confirm-message': 'You are about to leave our site to book an appointment. Continue?',
+      },
+    ]}
+    title="Ready to Schedule Your Service?"
+    subtitle="Don't wait for a small issue to become a big problem. Book your appointment today and experience the Akiya Power Tech difference."
+  />
 </Layout>

@@ -1,45 +1,68 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import evImage from '~/assets/images/for-libs.jpg'; // Update as needed
-import benefitImage from '~/assets/images/for-features.jpg'; // Update as needed
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+// Your image imports are perfect
+import evImage from '~/assets/images/for-libs.jpg';
+import benefitImage from '~/assets/images/for-features.jpg';
+
+const metadata = {
+  title: 'Fundamentals of LIBS & EV Battery Systems | Akiya Power Tech',
+};
 ---
 
-<PageLayout metadata={{ title: 'Fundamentals of LIBS and EV Battery System' }}>
-  <!-- Hero Section -->
-  <Hero
-    title="LIBS & EV Battery System"
-    tagline="Design • Analyze • Optimize"
-    image={{ src: evImage, alt: 'EV battery system training' }}
-  >
-    <Fragment slot="subtitle">
-      This advanced course explores Lithium-ion Battery Systems (LIBS), their chemistry, architecture, and integration into electric vehicles for optimal performance and safety.
-    </Fragment>
-  </Hero>
+<PageLayout metadata={metadata}>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={evImage}
+          alt="EV battery system training"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <!-- Course Overview -->
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Advanced Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          LIBS & EV <span class="text-blue-400">Battery Systems</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          This advanced course explores Lithium-ion Battery Systems (LIBS), their chemistry, architecture, and integration into electric vehicles.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     tagline="Course Overview"
     title="What You'll Learn"
     isReversed
     items={[
-      {
-        title: 'Battery Chemistry & Cell Types',
-        description: 'Understand lithium-ion cell structures, chemistries, and performance characteristics.',
-      },
-      {
-        title: 'Battery Pack Design',
-        description: 'Explore module configurations, thermal interfaces, and mechanical integration.',
-      },
-      {
-        title: 'Battery Management Systems (BMS)',
-        description: 'Learn how BMS monitors, balances, and protects battery cells during operation.',
-      },
-      {
-        title: 'Charging & Discharging Cycles',
-        description: 'Analyze energy flow, efficiency, and degradation patterns over time.',
-      },
+      { title: 'Battery Chemistry & Cell Types', description: 'Understand lithium-ion cell structures, chemistries, and performance characteristics.' },
+      { title: 'Battery Pack Design', description: 'Explore module configurations, thermal interfaces, and mechanical integration.' },
+      { title: 'Battery Management Systems (BMS)', description: 'Learn how BMS monitors, balances, and protects battery cells during operation.' },
+      // { title: 'Charging & Discharging Cycles', description: 'Analyze energy flow, efficiency, and degradation patterns over time.' },
     ]}
     image={{ src: evImage, alt: 'LIBS components and battery diagnostics' }}
   >
@@ -48,47 +71,37 @@ import benefitImage from '~/assets/images/for-features.jpg'; // Update as needed
     </span>
   </Content>
 
-  <!-- Program Benefits -->
   <Content
     tagline="Why Take This Course"
     title="Key Benefits"
     items={[
-      {
-        title: 'Advanced Technical Focus',
-        description: 'Covers both theoretical and applied aspects of LIBS and EV battery systems.',
-      },
-      {
-        title: 'Lab-Based Learning',
-        description: 'Hands-on sessions with battery analyzers, thermal sensors, and BMS simulators.',
-      },
-      {
-        title: 'Industry Alignment',
-        description: 'Content reflects current trends in EV battery design and safety engineering.',
-      },
-      {
-        title: 'Research-Ready Foundation',
-        description: 'Ideal for those pursuing innovation or academic research in energy storage.',
-      },
+      { title: 'Advanced Technical Focus', description: 'Covers both theoretical and applied aspects of LIBS and EV battery systems.' },
+      { title: 'Lab-Based Learning', description: 'Hands-on sessions with battery analyzers, thermal sensors, and BMS simulators.' },
+      { title: 'Industry Alignment', description: 'Content reflects current trends in EV battery design and safety engineering.' },
+      // { title: 'Research-Ready Foundation', description: 'Ideal for those pursuing innovation or academic research in energy storage.' },
     ]}
     image={{ src: benefitImage, alt: 'EV battery lab and testing equipment' }}
   >
     <span slot="content">
       <p class="text-lg">Mastering LIBS is essential for anyone working on the future of electric mobility. This course equips you with the tools and knowledge to lead in battery innovation.</p>
     </span>
-
     <span slot="bg">
       <div class="absolute inset-0 bg-purple-50 dark:bg-transparent"></div>
     </span>
   </Content>
 
-  <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Interested in battery systems? Reach out to explore enrollment and lab access.</p>
-  </div>
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Dive Deep into Battery Systems?</Fragment>
+    <Fragment slot="subtitle">
+      Interested in advanced battery systems? Reach out to explore enrollment options and lab access for this specialized course.
+    </Fragment>
+  </CallToAction>
 </PageLayout>

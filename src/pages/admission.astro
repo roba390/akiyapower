@@ -7,8 +7,8 @@ import Steps from '~/components/widgets/Steps.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
-// Using the same image, but for our custom header component.
-import pageHeaderImage from '~/assets/images/Tech-For_Hero.jpg';
+// Using the same image for the new custom hero section.
+import pageHeaderImage from '~/assets/images/standing.webp';
 
 const metadata = {
   title: 'Admissions & Enrollment | Akiya Power Tech',
@@ -18,54 +18,35 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- 
-    NEW CUSTOM PAGE HEADER:
-    - Replaces the generic <Hero> component.
-    - Features a clean, two-column layout.
-    - Includes breadcrumbs for better navigation.
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled exactly like the one on the about.astro page.
+    - It is shorter, has a static background image, and is fully responsive.
   -->
-    <!-- 
-    NEW RESPONSIVE CUSTOM PAGE HEADER:
-    - On Mobile: Shows image on top, title below. Paragraph and button are hidden.
-    - On Desktop: Switches to the two-column layout with all text visible.
-  -->
-  <section class="bg-amber-50 dark:bg-blue-950 py-16 sm:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
       
-      <!-- Grid container that is 1 column on mobile, 2 columns on desktop -->
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={pageHeaderImage}
+          alt="A student working on an EV at Akiya Power Tech"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-        <!-- Image Content -->
-        <!-- CHANGED: Now visible on mobile and ordered to be first -->
-        <div class="order-first md:order-none">
-          <Image
-            src={pageHeaderImage}
-            alt="A student working on an EV at Akiya Power Tech"
-            class="rounded-lg shadow-lg"
-            format="webp"
-            quality={80}
-            width={600}
-            height={400}
-          />
-        </div>
-
-        <!-- Text Content -->
-        <!-- CHANGED: Ordered to be second on mobile -->
-        <div class="text-center md:text-left order-last md:order-none">
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Admissions & Enrollment
-          </h1>
-          
-          <!-- CHANGED: Paragraph is now hidden on mobile -->
-          <p class="hidden md:block mt-6 text-lg text-gray-600 dark:text-gray-400">
-            Start your career as a certified Electric Vehicle technician in Addis Ababa. Here you'll find everything you need to know about our programs and how to begin your journey with Akiya Power Tech.
-          </p>
-
-          <!-- CHANGED: Button is now hidden on mobile -->
-          <div class="hidden md:block mt-8">
-            <Button variant="primary" text="Contact Admissions" href="/contact" icon="tabler:mail-forward" />
-          </div>
-        </div>
-
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Admissions & <span class="text-yellow-400">Enrollment</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          Start your career as a certified Electric Vehicle technician in Addis Ababa. Here you'll find everything you need to know about our programs and how to begin your journey with Akiya Power Tech.
+        </p>
       </div>
     </div>
   </section>

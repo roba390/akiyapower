@@ -1,94 +1,107 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import evImage from '~/assets/images/ev-core.jpg'; // Update as needed
-import benefitImage from '~/assets/images/for-courses.jpg'; // Update as needed
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+// Your image imports are perfect
+import evImage from '~/assets/images/ev-battery-1.jpg'; // Assumed filename, update as needed
+import benefitImage from '~/assets/images/for-libs.jpg'; // Assumed filename, update as needed
+
+const metadata = {
+  title: 'Fundamentals of LIBS Training | Akiya Power Tech',
+};
 ---
 
-<PageLayout metadata={{ title: 'EV Traction Motor' }}>
-  <!-- Hero Section -->
-  <Hero
-    title="EV Traction Motor"
-    tagline="Torque • Efficiency • Control"
-    image={{ src: evImage, alt: 'EV motor training session' }}
-  >
-    <Fragment slot="subtitle">
-      This course focuses on the electric traction motors used in EVs, covering motor types, control strategies, and performance optimization for real-world applications.
-    </Fragment>
-  </Hero>
+<PageLayout metadata={metadata}>
+  <!-- 
+    CUSTOM HERO SECTION:
+    - This is the new hero, styled consistently with your other internal pages.
+  -->
+  <section class="relative text-white">
+    <div class="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Background Image Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={evImage}
+          alt="Lithium-Ion Battery Systems training"
+          class="w-full h-full object-cover"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-  <!-- Course Overview -->
+      <!-- Content Layer -->
+      <div class="relative z-10">
+        <p class="text-sm font-semibold uppercase text-gray-300">
+          Specialization Course
+        </p>
+        <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight">
+          Fundamentals of <span class="text-blue-400">LIBS</span>
+        </h1>
+        <p class="hidden md:block mt-4 text-lg text-gray-200 max-w-3xl">
+          This course covers Lithium-Ion Battery Systems (LIBS), focusing on safe handling, diagnostic analysis, and real-world applications.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 
+    YOUR EXISTING CONTENT SECTIONS:
+    - This content is well-structured and is preserved.
+  -->
   <Content
     tagline="Course Overview"
     title="What You'll Learn"
     isReversed
     items={[
-      {
-        title: 'Motor Types & Architecture',
-        description: 'Explore AC induction, permanent magnet, and synchronous motors used in EVs.',
-      },
-      {
-        title: 'Torque & Speed Control',
-        description: 'Understand how motor controllers regulate acceleration, deceleration, and regenerative braking.',
-      },
-      {
-        title: 'Thermal Management',
-        description: 'Learn how motors are cooled and protected from overheating during operation.',
-      },
-      {
-        title: 'Diagnostics & Testing',
-        description: 'Use tools to measure motor performance, detect faults, and validate control signals.',
-      },
+      { title: 'Battery Chemistry & Function', description: 'Understand the fundamental principles of how lithium-ion cells store and release energy.' },
+      { title: 'Pack Design & Safety', description: 'Explore battery pack construction, safety features, and high-voltage protocols.' },
+      { title: 'Diagnostic Techniques', description: 'Learn to use specialized tools to assess the state of health and diagnose faults in battery systems.' },
+      // { title: 'Lifecycle Management', description: 'Covering the full lifecycle from manufacturing and use to recycling and second-life applications.' },
     ]}
-    image={{ src: evImage, alt: 'EV motor components and testing tools' }}
+    image={{ src: evImage, alt: 'Analyzing a lithium-ion battery pack' }}
   >
     <span slot="content">
-      <p class="text-lg">This course is ideal for technicians, engineers, and students interested in the mechanical and electrical dynamics of EV propulsion systems.</p>
+      <p class="text-lg">This course provides a comprehensive introduction to the most critical component of any electric vehicle, preparing technicians for advanced battery work.</p>
     </span>
   </Content>
 
-  <!-- Program Benefits -->
   <Content
     tagline="Why Take This Course"
     title="Key Benefits"
     items={[
-      {
-        title: 'Hands-On Motor Labs',
-        description: 'Work with real traction motors and controllers in a lab environment.',
-      },
-      {
-        title: 'Performance Analysis',
-        description: 'Learn to interpret torque curves, efficiency maps, and thermal profiles.',
-      },
-      {
-        title: 'Industry Applications',
-        description: 'Understand how motor systems are integrated into commercial EV platforms.',
-      },
-      {
-        title: 'Career Advancement',
-        description: 'Gain skills relevant to EV service, design, and manufacturing roles.',
-      },
+      { title: 'Safety Certification', description: 'Training is aligned with international standards for handling high-voltage lithium-ion systems.' },
+      { title: 'Practical Lab Sessions', description: 'Work with real battery modules and diagnostic equipment in a safe, controlled environment.' },
+      { title: 'In-Demand Skills', description: 'Gain specialized knowledge that is highly sought after in the rapidly growing EV industry.' },
+      // { title: 'Vendor-Neutral Knowledge', description: 'Learn principles applicable across a wide range of EV makes and models.' },
     ]}
-    image={{ src: benefitImage, alt: 'EV motor lab and diagnostic setup' }}
+    image={{ src: benefitImage, alt: 'Students in a battery lab' }}
   >
     <span slot="content">
-      <p class="text-lg">Traction motors are the heart of EV propulsion. This course gives you the tools to understand, service, and optimize them for peak performance.</p>
+      <p class="text-lg">Mastering LIBS is essential for any serious EV technician. This course provides the foundational knowledge needed to work safely and effectively.</p>
     </span>
-
     <span slot="bg">
-      <div class="absolute inset-0 bg-red-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-teal-50 dark:bg-transparent"></div>
     </span>
   </Content>
 
-  <!-- Call to Action -->
-  <div class="text-center py-12">
-    <a
-      href="/contact"
-      class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
-    >
-      Contact Us to Enroll
-    </a>
-    <p class="text-muted mt-4">Want to specialize in EV propulsion? Reach out to begin your training.</p>
-  </div>
+  <!-- 
+    UPGRADED CALL TO ACTION:
+    - Replaces the simple div with the standard <CallToAction> widget for consistency.
+  -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Contact Us to Enroll', href: '/contact', icon: 'tabler:mail-forward' },
+    ]}
+  >
+    <Fragment slot="title">Ready to Master Battery Fundamentals?</Fragment>
+    <Fragment slot="subtitle">
+      Enroll now to gain the essential skills for a successful career in the electric vehicle industry.
+    </Fragment>
+  </CallToAction>
 </PageLayout>

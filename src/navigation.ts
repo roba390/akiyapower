@@ -1,3 +1,4 @@
+import { text } from 'node:stream/consumers';
 import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
@@ -79,6 +80,7 @@ export const footerData = {
       title: 'Our Courses',
       links: [
         { text: 'EV Maintenance', href: getPermalink('/courses/ev-maintenance') },
+        {text: 'EV WorkShop', href: getPermalink('/courses/EV-workshop') },
         { text: 'Battery Technology', href: getPermalink('/courses/battery-tech') },
         { text: 'Charging Systems', href: getPermalink('/courses/charging-systems') },
         { text: 'EV Components', href: getPermalink('/courses/EV-Components') },
@@ -95,8 +97,8 @@ export const footerData = {
         { 
           text: 'Book an Appointment', 
           href: 'https://my-booking-app-ecru.vercel.app/',
-          // ✅ ADDED: Activates the custom modal
           'data-confirm-external': true,
+          'data-confirm-message': 'You are headed to our secure booking portal. Continue?',
         },
         { text: 'FAQs', href: getPermalink('/faqs') },
       ]

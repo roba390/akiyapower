@@ -10,9 +10,9 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialSlider from '~/components/TestimonialSlider.astro';
-import repair from '~/assets/images/repair.jpg';
-import technician from '~/assets/images/About-page.jpg';
-import newbyd from '~/assets/images/new3.webp';
+import repair from '~/assets/images/ev-core.jpg';
+import technician from '~/assets/images/insidecar.webp';
+import newbyd from '~/assets/images/techguys.webp';
 import webmVideo from '~/assets/images/Byd-video.webm'; // If you created one
 import posterImage from '~/assets/images/Byd-poster.webp';
 const metadata = {
@@ -88,7 +88,7 @@ const metadata = {
 
   <!-- Content Widget for TRAINING **************** -->
   <Content
-    isReversed
+
     tagline="Our Training Programs"
     title="Built for the Future of Automotive"
     items={[
@@ -110,14 +110,41 @@ const metadata = {
       alt: 'Akiya Power Tech Training Session',
     }}
   >
-    <Fragment slot="content">
+    <!-- <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Empowering the Next Generation of Technicians</h3>
-      Gain a competitive edge with our industry-leading training programs.
-    </Fragment>
+     
+    </Fragment> -->
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
+    <!-- Steps Widget ****************** -->
+  <Steps
+    isReversed
+    title="Start Your EV Technician Career in 3 Simple Steps"
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Explore Our Courses</span>',
+        description: "Take a look at our range of training programs and find the one that's right for you.",
+        icon: 'tabler:list-search',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Enroll and Learn</span>',
+        description: "Sign up for your chosen course and begin your journey to becoming an EV expert with our hands-on training.",
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Get Certified</span>',
+        description: 'Receive an industry-recognized certification that will open doors to new career opportunities in the EV industry.',
+        icon: 'tabler:certificate',
+      },
+    ]}
+    image={{
+      src: newbyd,
+      alt: 'Steps image',
+    }}
+    
+  />
 
   <!-- Content Widget for SERVICES **************** -->
   <Content
@@ -148,33 +175,7 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Steps Widget ****************** -->
-  <Steps
-    isReversed
-    title="Start Your EV Technician Career in 3 Simple Steps"
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Explore Our Courses</span>',
-        description: "Take a look at our range of training programs and find the one that's right for you.",
-        icon: 'tabler:list-search',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Enroll and Learn</span>',
-        description: "Sign up for your chosen course and begin your journey to becoming an EV expert with our hands-on training.",
-        icon: 'tabler:school',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Get Certified</span>',
-        description: 'Receive an industry-recognized certification that will open doors to new career opportunities in the EV industry.',
-        icon: 'tabler:certificate',
-      },
-    ]}
-    image={{
-      src: newbyd,
-      alt: 'Steps image',
-    }}
-    
-  />
+
 
   <!-- FAQs Widget ******************* -->
   <FAQs
