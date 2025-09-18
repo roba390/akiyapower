@@ -64,11 +64,6 @@ const trainers = [
     </div>
   </section>
 
-  <!-- 
-    NEW Trainers Section:
-    - Uses the elegant card design from the reference image.
-    - Includes a "View Full Profile" button to trigger the modal.
-  -->
   <section class="bg-slate-50 dark:bg-slate-900 py-16 sm:py-24">
     <div class="max-w-7xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 sm:p-12">
        <div class="mx-auto max-w-2xl text-center mb-16">
@@ -89,7 +84,6 @@ const trainers = [
               <p class="mt-1 text-sm font-medium text-green-500 dark:text-yellow-400">{trainer.title}</p>
               <p class="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">{trainer.bio}</p>
               
-              <!-- NEW: Button to open the modal -->
               <div class="mt-6">
                 <button class="view-profile-btn text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline" data-trainer={trainer.name.replace(/\s+/g, '-').toLowerCase()}>
                   View Full Profile
@@ -102,11 +96,6 @@ const trainers = [
     </div>
   </section>
 
-  <!-- 
-    MODALS SECTION:
-    - This generates a hidden modal for each trainer.
-    - The content is populated from the 'fullBio' property.
-  -->
   {trainers.map(trainer => (
     <div 
       id={`modal-${trainer.name.replace(/\s+/g, '-').toLowerCase()}`} 
@@ -129,7 +118,6 @@ const trainers = [
     </div>
   ))}
 
-  <!-- CallToAction remains the same -->
   <CallToAction
     actions={[
       { variant: 'primary', text: 'View All Courses', href: '#page-footer', icon: 'tabler:school' },
@@ -141,10 +129,10 @@ const trainers = [
 
   <!-- SCRIPT FOR MODALS -->
   <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
+    // ✅ The Fix: Wrap all logic in a reusable function
+    function setupTrainerModals() {
       const viewProfileButtons = document.querySelectorAll('.view-profile-btn');
       const modals = document.querySelectorAll('.trainer-modal');
-      const closeButtons = document.querySelectorAll('.modal-close');
       
       const openModal = (modal) => {
         if (!modal) return;
@@ -165,6 +153,10 @@ const trainers = [
       };
 
       viewProfileButtons.forEach(button => {
+        // Prevents adding the same listener multiple times
+        if (button.dataset.listenerAttached) return;
+        button.dataset.listenerAttached = 'true';
+
         button.addEventListener('click', () => {
           const trainerId = button.getAttribute('data-trainer');
           const modal = document.getElementById(`modal-${trainerId}`);
@@ -172,20 +164,29 @@ const trainers = [
         });
       });
       
-      closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const modal = button.closest('.trainer-modal');
-          closeModal(modal);
-        });
-      });
-      
       modals.forEach(modal => {
+        // Prevents adding the same listeners multiple times
+        if (modal.dataset.listenerAttached) return;
+        modal.dataset.listenerAttached = 'true';
+        
+        const closeButton = modal.querySelector('.modal-close');
+
+        if (closeButton) {
+          closeButton.addEventListener('click', () => {
+            closeModal(modal);
+          });
+        }
+        
         modal.addEventListener('click', (e) => {
           if (e.target === modal) {
             closeModal(modal);
           }
         });
       });
-    });
+    }
+
+    // ✅ The Fix: Run the setup function on initial load AND after every page transition
+    document.addEventListener('DOMContentLoaded', setupTrainerModals);
+    document.addEventListener('astro:after-swap', setupTrainerModals);
   </script>
 </Layout>

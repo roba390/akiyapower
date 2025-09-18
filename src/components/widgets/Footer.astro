@@ -8,6 +8,8 @@ interface Link {
   href?: string;
   ariaLabel?: string;
   icon?: string;
+  // Allow any other string properties for data attributes
+  [key: string]: any;
 }
 
 interface Links {
@@ -26,7 +28,7 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
-<footer  id="page-footer"  class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
+<footer id="page-footer" class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
   <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div
     class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
@@ -50,12 +52,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
 </div>
         <div class="text-sm text-muted flex gap-1">
           {
-            secondaryLinks.map(({ text, href }, index) => (
+            // ✅ FIXED: Added {...rest} to pass through any extra attributes
+            secondaryLinks.map(({ text, href, ...rest }, index) => (
               <>
                 {index !== 0 ? ' · ' : ''}
                 <a
                   class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
                   href={href}
+                  {...rest}
                   set:html={text}
                 />
               </>
@@ -71,12 +75,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
+                {/* ✅ FIXED: Changed destructuring to capture {...rest} and applied it to the <a> tag */}
+                {links.map(({ text, href, ariaLabel, ...rest }) => (
                   <li class="mb-2">
                     <a
                       class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
                       href={href}
                       aria-label={ariaLabel}
+                      {...rest}
                     >
                       <Fragment set:html={text} />
                     </a>

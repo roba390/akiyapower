@@ -5,7 +5,7 @@ import Button from '~/components/ui/Button.astro';
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
 ---
 
-<!-- ✅ MODIFIED FOR NETLIFY -->
+<!-- No changes needed here, your Netlify setup is perfect -->
 <form 
   name="contact" 
   method="POST" 
@@ -13,10 +13,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
   data-netlify="true" 
   netlify-honeypot="bot-field"
 >
-  <!-- Netlify requires this hidden field to match the form name -->
   <input type="hidden" name="form-name" value="contact" />
-
-  <!-- This is a honeypot field to prevent spam. It's hidden from users. -->
   <p class="hidden">
     <label>
       Don’t fill this out if you’re human: <input name="bot-field" />
@@ -90,9 +87,8 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
   {
     button && (
       <div class="mt-10 grid">
-        <Button variant="primary" type="submit">
-          {button}
-        </Button>
+        {/* ✅ FIXED: Pass 'button' as a 'text' prop instead of a child */}
+        <Button variant="primary" type="submit" text={button} />
       </div>
     )
   }

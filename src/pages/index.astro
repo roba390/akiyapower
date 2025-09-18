@@ -14,6 +14,7 @@ import repair from '~/assets/images/ev-core.jpg';
 import technician from '~/assets/images/insidecar.webp';
 import newbyd from '~/assets/images/techguys.webp';
 import webmVideo from '~/assets/images/Byd-video.webm'; // If you created one
+import mp4Video from '~/assets/images/Byd-video.mp4'; // Fallback for Safari, etc.
 import posterImage from '~/assets/images/Byd-poster.webp';
 const metadata = {
   title: 'Akiya Power Tech | EV Training and Service Center',
@@ -28,7 +29,7 @@ const metadata = {
     poster={{ src: posterImage, alt: 'Akiya Power Tech workshop background' }}
     video={[
       { src: webmVideo, type: 'video/webm' }, // Browser will try this first
-      // { src: mp4Video, type: 'video/mp4' }   // Fallback for Safari, etc.
+      { src: mp4Video, type: 'video/mp4' }   // Fallback for Safari, etc.
     ]}
     actions={[ /* ... your actions ... */ ]}
   >

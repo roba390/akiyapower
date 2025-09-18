@@ -48,72 +48,7 @@ const { language, textDirection } = I18N;
     <ConfirmationModal />
 
     {/* ======================================================================= */}
-    {/* SCRIPT FOR EXTERNAL LINK CONFIRMATION MODAL */}
-    {/* ======================================================================= */}
-    <script is:inline>
-      // Get references to all the modal elements
-      const modalBackdrop = document.getElementById('confirmation-modal-backdrop');
-      const modalDialog = document.getElementById('confirmation-modal-dialog');
-      const modalMessage = document.getElementById('confirmation-modal-message');
-      const confirmBtn = document.getElementById('confirmation-modal-confirm-btn');
-      const cancelBtn = document.getElementById('confirmation-modal-cancel-btn');
-
-      function showConfirmationModal(message) {
-        modalMessage.textContent = message;
-        modalBackdrop.classList.remove('hidden');
-        modalBackdrop.classList.add('flex');
-        setTimeout(() => {
-          modalBackdrop.classList.remove('opacity-0');
-          modalDialog.classList.remove('scale-95');
-        }, 10);
-        return new Promise((resolve, reject) => {
-          const cleanup = () => {
-            modalBackdrop.classList.add('opacity-0');
-            modalDialog.classList.add('scale-95');
-            setTimeout(() => {
-              modalBackdrop.classList.add('hidden');
-              modalBackdrop.classList.remove('flex');
-            }, 300);
-            confirmBtn.removeEventListener('click', onConfirm);
-            cancelBtn.removeEventListener('click', onCancel);
-          };
-          const onConfirm = () => {
-            cleanup();
-            resolve();
-          };
-          const onCancel = () => {
-            cleanup();
-            reject();
-          };
-          confirmBtn.addEventListener('click', onConfirm);
-          cancelBtn.addEventListener('click', onCancel);
-        });
-      }
-
-      function setupExternalLinkConfirmations() {
-        const linksToConfirm = document.querySelectorAll('a[data-confirm-external]');
-        linksToConfirm.forEach((link) => {
-          if (link.dataset.listenerAttached) return;
-          link.addEventListener('click', async (event) => {
-            event.preventDefault();
-            const message = link.dataset.confirmMessage || 'You are being directed to an external page. Proceed?';
-            const destination = link.getAttribute('href');
-            try {
-              await showConfirmationModal(message);
-              window.open(destination, '_blank', 'noopener,noreferrer');
-            } catch (error) {
-              console.log('Navigation cancelled by user.');
-            }
-          });
-          link.dataset.listenerAttached = 'true';
-        });
-      }
-      document.addEventListener('DOMContentLoaded', setupExternalLinkConfirmations);
-      document.addEventListener('astro:after-swap', setupExternalLinkConfirmations);
-    </script>
-
-    {/* ======================================================================= */}
-    {/* NEW: STYLES FOR MOMENTARY HIGHLIGHT ON SCROLL */}
+    {/* CONSOLIDATED SITE-WIDE SCRIPTS & STYLES */}
     {/* ======================================================================= */}
     <style is:global>
       @keyframes highlight-fade {
@@ -133,17 +68,87 @@ const { language, textDirection } = I18N;
       }
     </style>
 
-    {/* ======================================================================= */}
-    {/* NEW: SCRIPT FOR MOMENTARY HIGHLIGHT ON SCROLL */}
-    {/* ======================================================================= */}
     <script is:inline>
+      // This is our main function that runs all initialization scripts
+      function initializePageScripts() {
+        console.log('Astro event fired. Initializing page scripts...');
+        setupExternalLinkConfirmations();
+        setupAnchorHighlighting();
+      }
+
+      // --- Feature 1: Confirmation Modal ---
+      function setupExternalLinkConfirmations() {
+        const linksToConfirm = document.querySelectorAll('a[data-confirm-external]');
+        linksToConfirm.forEach((link) => {
+          // Check if a listener is already attached to avoid duplicates
+          if (link.dataset.listenerAttached === 'true') {
+            return;
+          }
+          link.dataset.listenerAttached = 'true'; // Mark it immediately
+
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            // All the modal logic is self-contained in this handler
+            const modalBackdrop = document.getElementById('confirmation-modal-backdrop');
+            const modalDialog = document.getElementById('confirmation-modal-dialog');
+            const modalMessage = document.getElementById('confirmation-modal-message');
+            const confirmBtn = document.getElementById('confirmation-modal-confirm-btn');
+            const cancelBtn = document.getElementById('confirmation-modal-cancel-btn');
+            const destination = link.getAttribute('href');
+            const message = link.dataset.confirmMessage || 'You are being directed to an external page. Proceed?';
+
+            // Ensure we found all the modal parts
+            if (!modalBackdrop || !modalDialog || !modalMessage || !confirmBtn || !cancelBtn) {
+              console.error('Confirmation modal elements not found in the DOM.');
+              // Fallback: just navigate if the modal is broken
+              window.open(destination, '_blank', 'noopener,noreferrer');
+              return;
+            }
+
+            modalMessage.textContent = message;
+            modalBackdrop.classList.remove('hidden');
+            modalBackdrop.classList.add('flex');
+            setTimeout(() => {
+              modalBackdrop.classList.remove('opacity-0');
+              modalDialog.classList.remove('scale-95');
+            }, 10); // Short delay for transition
+
+            // Use a one-time "once" listener for cleaner event handling
+            confirmBtn.addEventListener('click', function onConfirm() {
+              hideModal();
+              window.open(destination, '_blank', 'noopener,noreferrer');
+            }, { once: true });
+
+            cancelBtn.addEventListener('click', function onCancel() {
+              hideModal();
+              console.log('Navigation cancelled by user.');
+            }, { once: true });
+
+            function hideModal() {
+                modalBackdrop.classList.add('opacity-0');
+                modalDialog.classList.add('scale-95');
+                setTimeout(() => {
+                    modalBackdrop.classList.add('hidden');
+                    modalBackdrop.classList.remove('flex');
+                }, 300); // Match transition duration
+            }
+          });
+        });
+      }
+
+      // --- Feature 2: Anchor Link Highlighting ---
       function setupAnchorHighlighting() {
-        const anchorLinks = document.querySelectorAll('a[href^="/#"]'); // More specific selector
+        const anchorLinks = document.querySelectorAll('a[href^="/#"]');
         anchorLinks.forEach((link) => {
-          if (link.dataset.highlightListener) return;
+          if (link.dataset.highlightListener === 'true') {
+            return;
+          }
+          link.dataset.highlightListener = 'true';
+
           link.addEventListener('click', (event) => {
             const href = link.getAttribute('href');
-            const targetId = href.split('#')[1]; // Get the ID from the href
+            const targetId = href.split('#')[1];
             if (!targetId) return;
 
             const targetElement = document.getElementById(targetId);
@@ -151,15 +156,17 @@ const { language, textDirection } = I18N;
               targetElement.classList.add('highlight-momentary');
               setTimeout(() => {
                 targetElement.classList.remove('highlight-momentary');
-              }, 2500);
+              }, 2500); // Animation duration is 5s, but we can remove the class earlier
             }
           });
-          link.dataset.highlightListener = 'true';
         });
       }
-      document.addEventListener('DOMContentLoaded', setupAnchorHighlighting);
-      document.addEventListener('astro:after-swap', setupAnchorHighlighting);
+
+      // --- Attach Event Listeners ---
+      // Run scripts when the page is first loaded
+      document.addEventListener('DOMContentLoaded', initializePageScripts);
+      // Run scripts again after every page transition
+      document.addEventListener('astro:after-swap', initializePageScripts);
     </script>
   </body>
 </html>
-
