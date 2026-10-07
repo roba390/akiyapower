@@ -48,7 +48,7 @@ Solo developer. Handled:
 
 - Working with a real client (deadlines, revisions, communication)
 - Building a production site with Astro
-- [Add more: e.g., "SEO basics", "domain setup", "performance optimization"]
+
 
 ## Getting Started (local)
 
